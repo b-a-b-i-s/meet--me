@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="css/signinstyle.css">
+    <link rel="stylesheet" href="css/fontawesome-free-5.15.3-web/css/all.css">
+</head>
+<body>
+   
+    <form class="signin" action="#">
+        <fieldset>
+            <i class="fas fa-sign-in-alt fa-4x" id="sign-in-icon"></i>
+            <h1>Sign in</h1> 
+            <hr>
+            
+            <div class='inputWithIcon'>
+                <label for="email-signin"><strong>Email</strong> <br></label>
+                <input type="email" name="UserEmail" id="email-signin" placeholder="Enter Email" required>
+                <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+                <br> 
+            </div>
+            
+            <div class='inputWithIconPas'>
+                <label for="password-signin"><strong>Password</strong> <br></label>
+                <input type="password" name="UserPass" id="password-signin" placeholder="Enter Password" required>
+                <i class="fa fa-eye fa-lg fa-fw" id="togglePasswordSignIn"></i>
+                <br> 
+            </div>
+            <div class="modal-content">
+                <span class="close">&times;</span>
+
+
+                
+                </div>
+
+
+            <a href="" id='forgot-pass'><u>Forgot Password ?</u></a>
+            <br>
+
+            <button>Sign In</button>
+        </fieldset>
+    </form>
+    <script src='js/signinpsw.js'></script>
+</body>
+</html>

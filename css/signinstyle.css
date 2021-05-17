@@ -1,0 +1,149 @@
+body, html {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    /* background-color:  #EB6E34; */
+    /* color: #EB6E34; */
+}
+
+.signin * {
+    color: #EB6E34;
+}
+.signin>fieldset {
+    border: 0;
+    /* margin: 1em auto;
+    background-color: white;
+    border-radius: 14px;
+    width: 60%;
+    text-align: center;
+    box-shadow: 20px 20px rgb(150, 66, 27); */
+}
+
+.signin input{
+    width: 80%;
+    padding: 0.5em;
+    margin: 1em 0 2em 0;
+    border: 2px solid #eb6e347a;
+    border-radius: 8px;
+    transition: all 0.1s ease;
+}
+
+.signin input:hover {
+    border: 2px solid #EB6E34;
+    box-shadow: 2;
+}
+
+.signin input::placeholder {
+    color: #31170bd2;
+    transition: 0;
+}
+
+.signin input:focus {
+    border: 2px solid #EB6E34;
+    outline: none; 
+    box-shadow: 0 0 0 2px #EB6E34;
+    border-radius: 8px;
+}
+    
+.signin input:focus::placeholder {
+    color: rgba(0, 0, 0, 0.486);
+}
+
+#password {
+    margin: 1em 0 1em 0;
+}
+
+.signin button{
+    display:block;
+    width: calc(10% + 7em);
+    height: 2em;
+    font-size: 30px;
+    text-align: center;
+    background-color: white;
+    color: #eb6e34;
+    border-radius: 20px;
+    margin: 1em auto 0.5em auto;
+    cursor: pointer;
+    border: 3px solid #eb6e34;
+    transition: all 0.1s ease;
+    padding: 3px;
+    outline-color: #c2480f;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    font-family: tahoma;
+}
+
+
+.signin button:hover{
+    background-color: #eb6e34;
+    color: white;
+    border: 3px solid #eb6e34;
+    box-shadow: 0px 7px 15px rgb(150, 66, 27);
+    transform: translateY(-4px);
+    outline: none;
+}
+
+.signin button:active {
+    background-color: #c2480f;
+    border-color: #c2480f;
+    transform: scale(0.99);
+    outline: none;
+}
+
+.signin hr {
+    border: 1px solid #eb6e34;
+    margin-bottom: 1.5em;
+}
+
+#forgot-pass {
+    color: #EB6E34;
+    outline-color: #c2480f;
+}
+
+#forgot-pass:hover {
+    color: #eb6e34e7;
+}
+
+#forgot-pass:active {
+    color: #c2480f;
+}
+
+#sign-in-icon {
+    position: relative;
+    float: right;
+    top: 7px;
+    right: 20px;
+}
+
+.inputWithIcon, .inputWithIconPas{
+    position: relative;
+}
+
+.inputWithIcon input {
+    box-sizing: border-box;
+    padding-right: 35px;
+}
+
+.inputWithIcon i{
+    position: absolute;
+    top: 41px;
+    right: 11%;
+    color: #eb6e34bb;
+}
+
+
+.inputWithIconPas input {
+    box-sizing: border-box;
+    padding-right: 33px;
+}
+
+.inputWithIconPas i{
+    position: absolute;
+    right: 11%;
+    top: 41px;
+    cursor: pointer;
+    color: #eb6e34bb;
+}
+
+.inputWithIcon input:focus + i, .inputWithIcon input:hover + i, .inputWithIconPas input:focus + i, .inputWithIconPas input:hover + i{
+    color: #EB6E34;
+}
