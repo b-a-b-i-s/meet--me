@@ -110,15 +110,15 @@ body {
     /* border-left: 1px solid grey; */
 }
 
-.day-names > *:nth-child(2) {
-    /* width: calc(100% - 1px); */
-    /* border-left: 1px solid grey; */
-}
+/* .day-names > *:nth-child(2) {
+    width: calc(100% - 1px);
+    border-left: 1px solid grey;
+} */
 
 
-.day-names {
-    /* border-right: 1px solid grey; */
-}
+/* .day-names {
+    border-right: 1px solid grey;
+} */
 
 .day-name {
     margin: 0.3em;
