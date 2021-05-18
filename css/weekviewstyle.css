@@ -33,18 +33,12 @@ body {
     margin: auto;
     background-color: white;
     display: grid;
+    grid-template-columns: 100%;
     grid-template-rows: auto auto auto;
     margin-bottom: 0;
     border-radius: 15px;
     outline: none;
 }
-
-@media only screen and (max-width: 980px) {
-    .week {
-        max-width: 100%;
-    }
-
-  }
 
 
 .week-title {
@@ -60,6 +54,7 @@ body {
     z-index: 200000;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    width: 100%;
 }
 
 .week-title>h1{
@@ -95,11 +90,12 @@ body {
     top: 80.8px;
     grid-row: 2 / 3;
     display: grid;
-    grid-template-columns: repeat(8, calc(100% / 8)) 17px;
+    grid-template-columns: repeat(8, calc((100% )/ 8)) 17px;
     text-align: center;
     background-color: white;
     z-index: 200000;
     border-left: 1px solid grey;
+    width: 100%;
 }
 
 .day-names > * {
@@ -113,6 +109,7 @@ body {
     width: calc(100% - 1px);
     /* border-left: 1px solid grey; */
 }
+
 
 .day-names {
     border-right: 1px solid grey;
@@ -173,6 +170,8 @@ body {
     overflow-y: scroll;
     height: 34em;
     border-bottom-left-radius: 15px;
+    background-color: white;
+    width: 100%;
     /* Mobile change<------------------------------------------ */
 }
 
@@ -366,6 +365,47 @@ body {
 .n-resize {
     cursor: n-resize;
 }
+
+@media only screen and (max-width: 980px) {
+    .week {
+        max-width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 470px) {
+    #extra-space {
+        font-size: small;
+    }
+    .day-name {
+        margin: 0.1em;
+        padding: 0.1em;
+    }
+
+    .day-name > *:first-child {
+        display: block;
+        /* border: 1px solid black; */
+        /* padding: 10% 25%; */
+        /* margin: 5%; */
+    }
+    
+    .day-name > *:nth-child(2) {
+        font-size: medium;
+        display: block;
+    
+        /* border: 1px solid black; */
+        /* padding: 10% 25%; */
+        /* margin: 5%; */
+    }
+    
+    .day-name > *:last-child {
+        display: block;
+        /* padding: 10% 25%; */
+        /* margin: 5%; */
+    }
+
+}
+
 
 /* .resizer { 
     width: 100%; 
