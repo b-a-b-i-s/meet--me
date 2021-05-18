@@ -6,7 +6,7 @@ const scrollbarWidth = weekDays.offsetWidth - weekDays.clientWidth;
 
 const dayNames = document.querySelector('.day-names')
 let gridTemplateCols = document.defaultView.getComputedStyle(dayNames).gridTemplateColumns.slice(0,-4)
-dayNames.style.gridTemplateColumns = 'repeat(8, 1fr)' + (scrollbarWidth-1) + 'px';
+dayNames.style.gridTemplateColumns = 'repeat(8, 1fr)' + (scrollbarWidth+1) + 'px';
 
 
 const initialCurrentDateTemp = new Date()//2021,0,1);
