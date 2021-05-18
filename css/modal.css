@@ -7,8 +7,9 @@
     height: 100%;
     overflow: auto; 
     background-color: rgba(0,0,0,0.4);
-    z-index: 10;
+    z-index: 200005;
 }
+
 
 .modal-sign-content {
     background-color: #fefefe;
