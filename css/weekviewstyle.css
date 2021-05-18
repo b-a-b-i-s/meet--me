@@ -90,7 +90,7 @@ body {
     top: 80.8px;
     grid-row: 2 / 3;
     display: grid;
-    grid-template-columns: repeat(8, calc((100% )/ 8)) 17px;
+    grid-template-columns: repeat(8, calc((100%)/ 8)) 1px;
     text-align: center;
     background-color: white;
     z-index: 200000;
