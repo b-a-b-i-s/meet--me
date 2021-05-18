@@ -6,7 +6,14 @@ const scrollbarWidth = weekDays.offsetWidth - weekDays.clientWidth;
 
 const dayNames = document.querySelector('.day-names')
 let gridTemplateCols = document.defaultView.getComputedStyle(dayNames).gridTemplateColumns.slice(0,-4)
-dayNames.style.gridTemplateColumns = 'repeat(8, 1fr)' + (scrollbarWidth+1) + 'px';
+if (scrollbarWidth<5) dayNames.style.gridTemplateColumns = 'repeat(8, 1fr) 0px';
+else {
+    const div = document.createElement('div')
+    dayNames.appendChild(div)
+    dayNames.style.gridTemplateColumns = 'repeat(8, 1fr)' + (scrollbarWidth) + 'px';
+}
+// dayNames.style.gridTemplateColumns = 'repeat(8, calc(100% / 8 - ' + (scrollbarWidth+1) + 'px / 8))' + (scrollbarWidth) + 'px';
+
 
 
 const initialCurrentDateTemp = new Date()//2021,0,1);
@@ -109,11 +116,13 @@ function createWeekCalendar(date) {
         if (new Date(selectedDateFirst.getTime() + i * 24*3600*1000) < initialCurrentDate) {
             let offset = 24*4*i;
             // console.log(offset)
-            for (let j=offset; j<(offset+24*4); j++) {
+            let j;
+            for (j=offset; j<(offset+24*4); j++) {
                 hours[j].classList.add('past')
             }
+            hours[j-1].style.borderBottom = '0'
             if (i===6) {
-                for (let j=offset; j<(offset+24*4); j++) {
+                for (j=offset; j<(offset+24*4); j++) {
                     hours[j].style.borderRight = '0'
                 }
             }
@@ -122,11 +131,13 @@ function createWeekCalendar(date) {
         else {
             let offset = 24*4*i;
             // console.log(offset)
-            for (let j=offset; j<(offset+24*4); j++) {
+            let j;
+            for (j=offset; j<(offset+24*4); j++) {
                 hours[j].classList.remove('past')
             }
+            hours[j-1].style.borderBottom = '0'
             if (i===6) {
-                for (let j=offset; j<(offset+24*4); j++) {
+                for (j=offset; j<(offset+24*4); j++) {
                     hours[j].style.borderRight = '0'
                 }
             }
