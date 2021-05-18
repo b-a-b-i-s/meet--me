@@ -110,9 +110,14 @@ body {
     /* border-left: 1px solid grey; */
 }
 
+.day-names > *:nth-child(2) {
+    /* width: calc(100% - 1px); */
+    /* border-left: 1px solid grey; */
+}
+
 
 .day-names {
-    border-right: 1px solid grey;
+    /* border-right: 1px solid grey; */
 }
 
 .day-name {
@@ -165,11 +170,12 @@ body {
     grid-row: 3 / 4;
     display: grid;
     grid-template-columns: 1fr 7fr;
-    border-top: 1px solid grey;
+    border: 1px solid grey;
     border-left: 1px solid grey;
     overflow-y: scroll;
     height: 34em;
     border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     background-color: white;
     width: 100%;
     /* Mobile change<------------------------------------------ */
@@ -200,6 +206,7 @@ body {
 }
 
 .hours *:last-child{
+    border-bottom: 0;
     border-bottom-left-radius: 15px;
 }
 
