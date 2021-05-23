@@ -30,12 +30,12 @@ body, html {
 
 .signin input:hover {
     border: 2px solid #EB6E34;
-    box-shadow: 2;
+    /* box-shadow: 1px 1px #EB6E34; */
 }
 
 .signin input::placeholder {
     color: #31170bd2;
-    transition: 0;
+    transition: none;
 }
 
 .signin input:focus {
