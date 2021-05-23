@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>MeetMe</title>
+    <script src="https://kit.fontawesome.com/285af68c5a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="stylesheet" href="css/navbar.css">
@@ -10,176 +11,26 @@
     <link rel="stylesheet" href="css/signinstyle.css">
     <link rel="stylesheet" href="css/signupstyle.css">
     <!-- <link rel="stylesheet" href="css/fontawesome-free-5.15.3-web/css/all.css"> -->
-    <script src="https://kit.fontawesome.com/285af68c5a.js" crossorigin="anonymous"></script>
-
-    <style>
-
-    .cont{
-        width:70%;
-        border-radius: 20px 20px 20px 20px;
-        position:absolute;
-        margin-top:0%;
-        left:17%;
-    }
-
-    .cont{
-        box-shadow: 2px 8px 15px #eb6e34;
-    }
-
-    .month {
-      padding: 0.5em 0;
-      background: #eb6e34;
-      text-align: center;
-      border-radius: 20px 20px 0px 0px;
-    }
-
-    .month h2 {
-      color: white;
-      font-size: 1.5em;
-      text-transform: uppercase;
-      letter-spacing: 25px;
-      display: inline-block;
-    }
-
-
-    .weekdays li {
-      display: inline-block;
-      width: 13%;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .days li {
-      list-style-type: none;
-      display: inline-block;
-      width: 13%;
-      padding: 2% 0%;
-      text-align: center;
-      user-select: none; 
-    }
-
-    .days li.notcurr{
-        color: #cfcfcf;
-        cursor: auto;
-    }
-
-    .days li.past:hover{
-        cursor: not-allowed;
-    }
-    .days li.curr{
-        background-color: #f0f0f0;
-    }
-    .days li.curr:hover{
-        background-color: grey;
-        cursor:pointer;
-        border-radius: 20px;
-        color: white;
-        font-weight: 200;
-        transition: all 0.3s ease;
-        box-shadow:
-        inset 0 -3em 3em rgba(0,0,0,0.1),
-             0 0  0 2px rgb(255,255,255),
-             0.3em 0.3em 1em rgba(0,0,0,0.3);
-    }
-
-    .days li.curr.selected:hover {
-        background-color: #d2e6a5;
-        color: black;
-        font-weight: bold;
-    }
-
-    .days li.selected {
-      background-color: #d2e6a5;
-      color: black;
-      font-weight: bold;
-    }
-
-    
-.view-selector *{
-    cursor: pointer;
-}
-
-.view-selector span {
-    color: blue;
-    text-decoration: underline;
-}
-
-.view-selector a {
-    color: #eb6e34;
-    text-decoration: none;
-}
-
-.view-selector a:hover {
-    color: blue;
-    text-decoration: underline;
-}
-
-.arrow {
-  display: inline-block;
-  color: white;
-}
-
-.arrow.rightarr {
-    float: right;
-    padding-right: 50px;
-}
-
-.arrow.leftarr {
-  float: left;
-  padding-left: 50px;
-}
-
-.arrow:hover{
-    color:black;
-    cursor: pointer;
-}
-    </style>
+    <link rel="stylesheet" href="css/monthviewstyle.css">
+    <link rel="stylesheet" href="css/publish-meetme.css">
 
 </head>
 <body>
     <nav>
-        <!-- <div class="left"> -->
-        <!-- <a href="" class="menu">Home</a>
-        <a href="" class="menu">Create a MeetMe</a>
-        <a href="" class="menu">My meetings</a> -->
         <button class="menu-nav-button" onclick="location.href='index.html';">Home</button>
         <button class="menu-nav-button" onclick="location.href='monthly_calendar.html';">Create a MeetMe</button>
         <button class="menu-nav-button">My meetings</button>
         <div class="right">
           <button class="menu-nav-button" id="signinbtn">Sign In</button>
           <button class="menu-nav-button" id="signuplink">Sign Up</button>
-          <!-- <div><button class="nav-button">Sign In</button></div>
-          <div class="altern">or <a href="#"><u>Sign Up</u></a></div> -->
         </div>
-      </nav>
-    <div>
-        <h2 style="text-align: center;" class="view-selector"> 
-            <span>Month view</span>
-            <a href="weekview.html">Week view</a>
-        </h2>
-    </div>
-    <div class="cont">
-        <div class="month">
-            <h3 class="arrow leftarr">&#10094;</h3>
-            <h2></h2>
-            <h3 class="arrow rightarr">&#10095;</h3>
-        </div>
+    </nav>
 
-        <ul class="weekdays">
-            <li>Su
-            <li>Mo
-            <li>Tu
-            <li>We
-            <li>Th
-            <li>Fr
-            <li>Sa
-        </ul>
 
-        <ul class="days" id="daytodate">
-        </ul>
-    </div>
+
 
     <div id="signinmodal" class="modal-sign">
+        <!-- <div > -->
           
           <form class="signin modal-sign-content" action="#">
             <span class="close-sign">&times;</span>
@@ -211,9 +62,10 @@
               <button>Sign In</button>
             </fieldset>
           </form>
-      </div>
+    </div>
       
-      <div id="signupmodal" class="modal-sign">
+    <div id="signupmodal" class="modal-sign">
+        <!-- <div class="modal-content"> -->
           
           <form  class="signup modal-sign-content" action="#">
             <span class="close-sign">&times;</span>
@@ -251,145 +103,275 @@
                 <button>Sign Up</button>
             </fieldset>
         </form>
-      </div>
-      
-      <script src="js/modal.js"></script>
-      <script src='js/signinpsw.js'></script>
-      <script src='js/signuppsw.js'></script>
+    </div>
 
 
-    <script type="text/javascript">
 
 
-        let currdate = new Date();
-        const highlighted_days = [];
-
-        function prevmonth(givendate) {
-            const givenmonth = givendate.getMonth();
-            const givenyear = givendate.getFullYear();
-            prev = new Date(givenyear, givenmonth, 0);
-            currdate = prev;
-            return prev;
-        }
-        function nextmonth(givendate) {
-            const givenmonth = givendate.getMonth();
-            const givenyear = givendate.getFullYear();
-            const next = new Date(givenyear, givenmonth, 32);
-            currdate = next;
-            return next;
-        }
-        function createMonthDates(givendate) {
-            console.log(givendate);
-            const givenmonth = givendate.getMonth();
-            const givenyear = givendate.getFullYear();
-            const givenday = givendate.getDay();
-            const numofdays = new Date(givenyear, givenmonth+1, 0).getDate();
-            const start = new Date(givenyear, givenmonth, 1).getDay();
-            let lastmonth = new Date(givenyear, givenmonth, 0).getDate();
-            const lastday = new Date(givenyear, givenmonth + 1, 0).getDay();
-            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-            for (let i = 0; i < start; i++) {
-                const newday = document.createElement("LI");
-                newday.innerHTML = lastmonth++ - start +1;
-                newday.classList.add("notcurr");
-                const days = document.querySelector(".days")
-                days.appendChild(newday);
-            }
-
-            for (let i = 0; i < numofdays; i++) {
-                const newday = document.createElement("LI");
-                newday.innerHTML = i + 1;
-                if (new Date(givenyear, givenmonth, i+2) <= new Date()) {
-                    newday.classList.add("past");
-                } else {
-                    newday.classList.add("curr");
-                    console.log(new Date(givenyear, givenmonth, i).getTime());
-                    
-                    current = new Date(givenyear, givenmonth, i+1).getTime();
-                    let cnt = 0;
-                    for (point in highlighted_days) {
-                        if (current == highlighted_days[point]) {
-                            cnt = 1;
-                            break;
-                        }
-                    }
-                    if (cnt===1) {
-                        newday.classList.add("selected");
-                    }
-                }
-                const days = document.querySelector(".days")
-                days.appendChild(newday);
-            }
-
-            let newmonthday = 1;
-
-            for (let i = lastday; i < 6; i++) {
-                const newday = document.createElement("LI");
-                newday.innerHTML = newmonthday++;
-                newday.classList.add("notcurr");
-                const days = document.querySelector(".days")
-                days.appendChild(newday);
-            }
-
-            const titlemonth = months[givenmonth];
-
-            const title = document.querySelector(".month h2");
-            title.innerHTML = titlemonth;
-            const monthcontainer = document.querySelector(".month");
-            monthcontainer.appendChild(title);
-          
-        }
+    
+    <div id='all-container'>
+        <h1 style="text-align: center;" id='choose-options'>Choose the options</h1>
         
-        function clearcurrentmonth(){
-            const days = document.querySelector(".days");
-            days.innerHTML = "";
-            const monthcontainer = document.querySelector(".month h2");
-            monthcontainer.innerHTML = "";
-        }
+        
+        <div id='view-selector-cont'>
+            <h2 style="text-align: center;" class="view-selector"> 
+                <span id='month-selector' class='selected'>Month view</span>
+                <span id='week-selector' class='unselected'>Week view</span>
+            </h2>
+        </div>
 
-        function saveDate(givendate, numday) {
-            const givenmonth = givendate.getMonth();
-            const givenyear = givendate.getFullYear();
-            highlighted_days.push(new Date(givenyear, givenmonth, numday).getTime());
-        }
 
-        function deleteDate(givendate, numday) {
-            const givenmonth = givendate.getMonth();
-            const givenyear = givendate.getFullYear();
-            let ind = highlighted_days.indexOf(new Date(givenyear, givenmonth, numday).getTime());
+
+        
+        
+
+        <div class="cont">
+            <div class="month">
+                <h3 class="arrow leftarr">&#10094;</h3>
+                <h2></h2>
+                <h3 class="arrow rightarr">&#10095;</h3>
+            </div>
+
+            <ul class="weekdays">
+                <li>Su
+                <li>Mo
+                <li>Tu
+                <li>We
+                <li>Th
+                <li>Fr
+                <li>Sa
+            </ul>
+
+            <ul class="days" id="daytodate">
+            </ul>
+        </div>
+
+
+        <div class="week">
+            <div class="week-title">
+                <i class="fas fa-caret-left fa-5x" id='previousButtonWeek'></i>
+                <h1>Apr 12-19</h1>
+                <i class="fas fa-caret-right fa-5x" id='nextButtonWeek'></i>
+            </div>
+            <!-- <div class="week-view"> -->
+            <div class="day-names">
+                <div>
+                    <!-- <span id="extra-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -->
+                </div>
+                <div>
+                    <div class="day-name">
+                        <span>Apr</span>
+                        <span>12</span>
+                        <span>Sun</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="day-name">
+                        <span>Apr</span>
+                        <span>12</span>
+                        <span>Mon</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="day-name">
+                        <span>Apr</span>
+                        <span>13</span>
+                        <span>Tue</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="day-name">
+                        <span>Apr</span>
+                        <span>14</span>
+                        <span>Wed</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="day-name">
+                        <span>Apr</span>
+                        <span>15</span>
+                        <span>Thu</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="day-name">
+                        <span>Apr</span>
+                        <span>16</span>
+                        <span>Fri</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="day-name">
+                        <span>Apr</span>
+                        <span>17</span>
+                        <span>Sat</span>
+                    </div>
+                </div>
+                <!-- <div>
+                    
+                </div> -->
+            </div>
+            <div class="week-days">
+                <div class="hours">
+                    <div>00:00</div>
+                    <div>01:00</div>
+                    <div>02:00</div>
+                    <div>03:00</div>
+                    <div>04:00</div>
+                    <div>05:00</div>
+                    <div>06:00</div>
+                    <div>07:00</div>
+                    <div>08:00</div>
+                    <div>09:00</div>
+                    <div>10:00</div>
+                    <div>11:00</div>
+                    <div>12:00</div>
+                    <div>13:00</div>
+                    <div>14:00</div>
+                    <div>15:00</div>
+                    <div>16:00</div>
+                    <div>17:00</div>
+                    <div>18:00</div>
+                    <div>19:00</div>
+                    <div>20:00</div>
+                    <div>21:00</div>
+                    <div>22:00</div>
+                    <div>23:00</div>
+                </div>
+                <div class="week-columns">
+                        <div><span>00:00</span></div><div><span>00:15</span></div><div><span>00:30</span></div><div><span>00:45</span></div><div><span>01:00</span></div><div><span>01:15</span></div><div><span>01:30</span></div><div><span>01:45</span></div><div><span>02:00</span></div><div><span>02:15</span></div><div><span>02:30</span></div><div><span>02:45</span></div><div><span>03:00</span></div><div><span>03:15</span></div><div><span>03:30</span></div><div><span>03:45</span></div><div><span>04:00</span></div><div><span>04:15</span></div><div><span>04:30</span></div><div><span>04:45</span></div><div><span>05:00</span></div><div><span>05:15</span></div><div><span>05:30</span></div><div><span>05:45</span></div><div><span>06:00</span></div><div><span>06:15</span></div><div><span>06:30</span></div><div><span>06:45</span></div><div><span>07:00</span></div><div><span>07:15</span></div><div><span>07:30</span></div><div><span>07:45</span></div><div><span>08:00</span></div><div><span>08:15</span></div><div><span>08:30</span></div><div><span>08:45</span></div><div><span>09:00</span></div><div><span>09:15</span></div><div><span>09:30</span></div><div><span>09:45</span></div><div><span>10:00</span></div><div><span>10:15</span></div><div><span>10:30</span></div><div><span>10:45</span></div><div><span>11:00</span></div><div><span>11:15</span></div><div><span>11:30</span></div><div><span>11:45</span></div><div><span>12:00</span></div><div><span>12:15</span></div><div><span>12:30</span></div><div><span>12:45</span></div><div><span>13:00</span></div><div><span>13:15</span></div><div><span>13:30</span></div><div><span>13:45</span></div><div><span>14:00</span></div><div><span>14:15</span></div><div><span>14:30</span></div><div><span>14:45</span></div><div><span>15:00</span></div><div><span>15:15</span></div><div><span>15:30</span></div><div><span>15:45</span></div><div><span>16:00</span></div><div><span>16:15</span></div><div><span>16:30</span></div><div><span>16:45</span></div><div><span>17:00</span></div><div><span>17:15</span></div><div><span>17:30</span></div><div><span>17:45</span></div><div><span>18:00</span></div><div><span>18:15</span></div><div><span>18:30</span></div><div><span>18:45</span></div><div><span>19:00</span></div><div><span>19:15</span></div><div><span>19:30</span></div><div><span>19:45</span></div><div><span>20:00</span></div><div><span>20:15</span></div><div><span>20:30</span></div><div><span>20:45</span></div><div><span>21:00</span></div><div><span>21:15</span></div><div><span>21:30</span></div><div><span>21:45</span></div><div><span>22:00</span></div><div><span>22:15</span></div><div><span>22:30</span></div><div><span>22:45</span></div><div><span>23:00</span></div><div><span>23:15</span></div><div><span>23:30</span></div><div><span>23:45</span></div>
+    
+                        <div><span>00:00</span></div><div><span>00:15</span></div><div><span>00:30</span></div><div><span>00:45</span></div><div><span>01:00</span></div><div><span>01:15</span></div><div><span>01:30</span></div><div><span>01:45</span></div><div><span>02:00</span></div><div><span>02:15</span></div><div><span>02:30</span></div><div><span>02:45</span></div><div><span>03:00</span></div><div><span>03:15</span></div><div><span>03:30</span></div><div><span>03:45</span></div><div><span>04:00</span></div><div><span>04:15</span></div><div><span>04:30</span></div><div><span>04:45</span></div><div><span>05:00</span></div><div><span>05:15</span></div><div><span>05:30</span></div><div><span>05:45</span></div><div><span>06:00</span></div><div><span>06:15</span></div><div><span>06:30</span></div><div><span>06:45</span></div><div><span>07:00</span></div><div><span>07:15</span></div><div><span>07:30</span></div><div><span>07:45</span></div><div><span>08:00</span></div><div><span>08:15</span></div><div><span>08:30</span></div><div><span>08:45</span></div><div><span>09:00</span></div><div><span>09:15</span></div><div><span>09:30</span></div><div><span>09:45</span></div><div><span>10:00</span></div><div><span>10:15</span></div><div><span>10:30</span></div><div><span>10:45</span></div><div><span>11:00</span></div><div><span>11:15</span></div><div><span>11:30</span></div><div><span>11:45</span></div><div><span>12:00</span></div><div><span>12:15</span></div><div><span>12:30</span></div><div><span>12:45</span></div><div><span>13:00</span></div><div><span>13:15</span></div><div><span>13:30</span></div><div><span>13:45</span></div><div><span>14:00</span></div><div><span>14:15</span></div><div><span>14:30</span></div><div><span>14:45</span></div><div><span>15:00</span></div><div><span>15:15</span></div><div><span>15:30</span></div><div><span>15:45</span></div><div><span>16:00</span></div><div><span>16:15</span></div><div><span>16:30</span></div><div><span>16:45</span></div><div><span>17:00</span></div><div><span>17:15</span></div><div><span>17:30</span></div><div><span>17:45</span></div><div><span>18:00</span></div><div><span>18:15</span></div><div><span>18:30</span></div><div><span>18:45</span></div><div><span>19:00</span></div><div><span>19:15</span></div><div><span>19:30</span></div><div><span>19:45</span></div><div><span>20:00</span></div><div><span>20:15</span></div><div><span>20:30</span></div><div><span>20:45</span></div><div><span>21:00</span></div><div><span>21:15</span></div><div><span>21:30</span></div><div><span>21:45</span></div><div><span>22:00</span></div><div><span>22:15</span></div><div><span>22:30</span></div><div><span>22:45</span></div><div><span>23:00</span></div><div><span>23:15</span></div><div><span>23:30</span></div><div><span>23:45</span></div>
+    
+                        <div><span>00:00</span></div><div><span>00:15</span></div><div><span>00:30</span></div><div><span>00:45</span></div><div><span>01:00</span></div><div><span>01:15</span></div><div><span>01:30</span></div><div><span>01:45</span></div><div><span>02:00</span></div><div><span>02:15</span></div><div><span>02:30</span></div><div><span>02:45</span></div><div><span>03:00</span></div><div><span>03:15</span></div><div><span>03:30</span></div><div><span>03:45</span></div><div><span>04:00</span></div><div><span>04:15</span></div><div><span>04:30</span></div><div><span>04:45</span></div><div><span>05:00</span></div><div><span>05:15</span></div><div><span>05:30</span></div><div><span>05:45</span></div><div><span>06:00</span></div><div><span>06:15</span></div><div><span>06:30</span></div><div><span>06:45</span></div><div><span>07:00</span></div><div><span>07:15</span></div><div><span>07:30</span></div><div><span>07:45</span></div><div><span>08:00</span></div><div><span>08:15</span></div><div><span>08:30</span></div><div><span>08:45</span></div><div><span>09:00</span></div><div><span>09:15</span></div><div><span>09:30</span></div><div><span>09:45</span></div><div><span>10:00</span></div><div><span>10:15</span></div><div><span>10:30</span></div><div><span>10:45</span></div><div><span>11:00</span></div><div><span>11:15</span></div><div><span>11:30</span></div><div><span>11:45</span></div><div><span>12:00</span></div><div><span>12:15</span></div><div><span>12:30</span></div><div><span>12:45</span></div><div><span>13:00</span></div><div><span>13:15</span></div><div><span>13:30</span></div><div><span>13:45</span></div><div><span>14:00</span></div><div><span>14:15</span></div><div><span>14:30</span></div><div><span>14:45</span></div><div><span>15:00</span></div><div><span>15:15</span></div><div><span>15:30</span></div><div><span>15:45</span></div><div><span>16:00</span></div><div><span>16:15</span></div><div><span>16:30</span></div><div><span>16:45</span></div><div><span>17:00</span></div><div><span>17:15</span></div><div><span>17:30</span></div><div><span>17:45</span></div><div><span>18:00</span></div><div><span>18:15</span></div><div><span>18:30</span></div><div><span>18:45</span></div><div><span>19:00</span></div><div><span>19:15</span></div><div><span>19:30</span></div><div><span>19:45</span></div><div><span>20:00</span></div><div><span>20:15</span></div><div><span>20:30</span></div><div><span>20:45</span></div><div><span>21:00</span></div><div><span>21:15</span></div><div><span>21:30</span></div><div><span>21:45</span></div><div><span>22:00</span></div><div><span>22:15</span></div><div><span>22:30</span></div><div><span>22:45</span></div><div><span>23:00</span></div><div><span>23:15</span></div><div><span>23:30</span></div><div><span>23:45</span></div>
+    
+                        <div><span>00:00</span></div><div><span>00:15</span></div><div><span>00:30</span></div><div><span>00:45</span></div><div><span>01:00</span></div><div><span>01:15</span></div><div><span>01:30</span></div><div><span>01:45</span></div><div><span>02:00</span></div><div><span>02:15</span></div><div><span>02:30</span></div><div><span>02:45</span></div><div><span>03:00</span></div><div><span>03:15</span></div><div><span>03:30</span></div><div><span>03:45</span></div><div><span>04:00</span></div><div><span>04:15</span></div><div><span>04:30</span></div><div><span>04:45</span></div><div><span>05:00</span></div><div><span>05:15</span></div><div><span>05:30</span></div><div><span>05:45</span></div><div><span>06:00</span></div><div><span>06:15</span></div><div><span>06:30</span></div><div><span>06:45</span></div><div><span>07:00</span></div><div><span>07:15</span></div><div><span>07:30</span></div><div><span>07:45</span></div><div><span>08:00</span></div><div><span>08:15</span></div><div><span>08:30</span></div><div><span>08:45</span></div><div><span>09:00</span></div><div><span>09:15</span></div><div><span>09:30</span></div><div><span>09:45</span></div><div><span>10:00</span></div><div><span>10:15</span></div><div><span>10:30</span></div><div><span>10:45</span></div><div><span>11:00</span></div><div><span>11:15</span></div><div><span>11:30</span></div><div><span>11:45</span></div><div><span>12:00</span></div><div><span>12:15</span></div><div><span>12:30</span></div><div><span>12:45</span></div><div><span>13:00</span></div><div><span>13:15</span></div><div><span>13:30</span></div><div><span>13:45</span></div><div><span>14:00</span></div><div><span>14:15</span></div><div><span>14:30</span></div><div><span>14:45</span></div><div><span>15:00</span></div><div><span>15:15</span></div><div><span>15:30</span></div><div><span>15:45</span></div><div><span>16:00</span></div><div><span>16:15</span></div><div><span>16:30</span></div><div><span>16:45</span></div><div><span>17:00</span></div><div><span>17:15</span></div><div><span>17:30</span></div><div><span>17:45</span></div><div><span>18:00</span></div><div><span>18:15</span></div><div><span>18:30</span></div><div><span>18:45</span></div><div><span>19:00</span></div><div><span>19:15</span></div><div><span>19:30</span></div><div><span>19:45</span></div><div><span>20:00</span></div><div><span>20:15</span></div><div><span>20:30</span></div><div><span>20:45</span></div><div><span>21:00</span></div><div><span>21:15</span></div><div><span>21:30</span></div><div><span>21:45</span></div><div><span>22:00</span></div><div><span>22:15</span></div><div><span>22:30</span></div><div><span>22:45</span></div><div><span>23:00</span></div><div><span>23:15</span></div><div><span>23:30</span></div><div><span>23:45</span></div>
+    
+                        <div><span>00:00</span></div><div><span>00:15</span></div><div><span>00:30</span></div><div><span>00:45</span></div><div><span>01:00</span></div><div><span>01:15</span></div><div><span>01:30</span></div><div><span>01:45</span></div><div><span>02:00</span></div><div><span>02:15</span></div><div><span>02:30</span></div><div><span>02:45</span></div><div><span>03:00</span></div><div><span>03:15</span></div><div><span>03:30</span></div><div><span>03:45</span></div><div><span>04:00</span></div><div><span>04:15</span></div><div><span>04:30</span></div><div><span>04:45</span></div><div><span>05:00</span></div><div><span>05:15</span></div><div><span>05:30</span></div><div><span>05:45</span></div><div><span>06:00</span></div><div><span>06:15</span></div><div><span>06:30</span></div><div><span>06:45</span></div><div><span>07:00</span></div><div><span>07:15</span></div><div><span>07:30</span></div><div><span>07:45</span></div><div><span>08:00</span></div><div><span>08:15</span></div><div><span>08:30</span></div><div><span>08:45</span></div><div><span>09:00</span></div><div><span>09:15</span></div><div><span>09:30</span></div><div><span>09:45</span></div><div><span>10:00</span></div><div><span>10:15</span></div><div><span>10:30</span></div><div><span>10:45</span></div><div><span>11:00</span></div><div><span>11:15</span></div><div><span>11:30</span></div><div><span>11:45</span></div><div><span>12:00</span></div><div><span>12:15</span></div><div><span>12:30</span></div><div><span>12:45</span></div><div><span>13:00</span></div><div><span>13:15</span></div><div><span>13:30</span></div><div><span>13:45</span></div><div><span>14:00</span></div><div><span>14:15</span></div><div><span>14:30</span></div><div><span>14:45</span></div><div><span>15:00</span></div><div><span>15:15</span></div><div><span>15:30</span></div><div><span>15:45</span></div><div><span>16:00</span></div><div><span>16:15</span></div><div><span>16:30</span></div><div><span>16:45</span></div><div><span>17:00</span></div><div><span>17:15</span></div><div><span>17:30</span></div><div><span>17:45</span></div><div><span>18:00</span></div><div><span>18:15</span></div><div><span>18:30</span></div><div><span>18:45</span></div><div><span>19:00</span></div><div><span>19:15</span></div><div><span>19:30</span></div><div><span>19:45</span></div><div><span>20:00</span></div><div><span>20:15</span></div><div><span>20:30</span></div><div><span>20:45</span></div><div><span>21:00</span></div><div><span>21:15</span></div><div><span>21:30</span></div><div><span>21:45</span></div><div><span>22:00</span></div><div><span>22:15</span></div><div><span>22:30</span></div><div><span>22:45</span></div><div><span>23:00</span></div><div><span>23:15</span></div><div><span>23:30</span></div><div><span>23:45</span></div>
+    
+                        <div><span>00:00</span></div><div><span>00:15</span></div><div><span>00:30</span></div><div><span>00:45</span></div><div><span>01:00</span></div><div><span>01:15</span></div><div><span>01:30</span></div><div><span>01:45</span></div><div><span>02:00</span></div><div><span>02:15</span></div><div><span>02:30</span></div><div><span>02:45</span></div><div><span>03:00</span></div><div><span>03:15</span></div><div><span>03:30</span></div><div><span>03:45</span></div><div><span>04:00</span></div><div><span>04:15</span></div><div><span>04:30</span></div><div><span>04:45</span></div><div><span>05:00</span></div><div><span>05:15</span></div><div><span>05:30</span></div><div><span>05:45</span></div><div><span>06:00</span></div><div><span>06:15</span></div><div><span>06:30</span></div><div><span>06:45</span></div><div><span>07:00</span></div><div><span>07:15</span></div><div><span>07:30</span></div><div><span>07:45</span></div><div><span>08:00</span></div><div><span>08:15</span></div><div><span>08:30</span></div><div><span>08:45</span></div><div><span>09:00</span></div><div><span>09:15</span></div><div><span>09:30</span></div><div><span>09:45</span></div><div><span>10:00</span></div><div><span>10:15</span></div><div><span>10:30</span></div><div><span>10:45</span></div><div><span>11:00</span></div><div><span>11:15</span></div><div><span>11:30</span></div><div><span>11:45</span></div><div><span>12:00</span></div><div><span>12:15</span></div><div><span>12:30</span></div><div><span>12:45</span></div><div><span>13:00</span></div><div><span>13:15</span></div><div><span>13:30</span></div><div><span>13:45</span></div><div><span>14:00</span></div><div><span>14:15</span></div><div><span>14:30</span></div><div><span>14:45</span></div><div><span>15:00</span></div><div><span>15:15</span></div><div><span>15:30</span></div><div><span>15:45</span></div><div><span>16:00</span></div><div><span>16:15</span></div><div><span>16:30</span></div><div><span>16:45</span></div><div><span>17:00</span></div><div><span>17:15</span></div><div><span>17:30</span></div><div><span>17:45</span></div><div><span>18:00</span></div><div><span>18:15</span></div><div><span>18:30</span></div><div><span>18:45</span></div><div><span>19:00</span></div><div><span>19:15</span></div><div><span>19:30</span></div><div><span>19:45</span></div><div><span>20:00</span></div><div><span>20:15</span></div><div><span>20:30</span></div><div><span>20:45</span></div><div><span>21:00</span></div><div><span>21:15</span></div><div><span>21:30</span></div><div><span>21:45</span></div><div><span>22:00</span></div><div><span>22:15</span></div><div><span>22:30</span></div><div><span>22:45</span></div><div><span>23:00</span></div><div><span>23:15</span></div><div><span>23:30</span></div><div><span>23:45</span></div>
+    
+                        <div><span>00:00</span></div><div><span>00:15</span></div><div><span>00:30</span></div><div><span>00:45</span></div><div><span>01:00</span></div><div><span>01:15</span></div><div><span>01:30</span></div><div><span>01:45</span></div><div><span>02:00</span></div><div><span>02:15</span></div><div><span>02:30</span></div><div><span>02:45</span></div><div><span>03:00</span></div><div><span>03:15</span></div><div><span>03:30</span></div><div><span>03:45</span></div><div><span>04:00</span></div><div><span>04:15</span></div><div><span>04:30</span></div><div><span>04:45</span></div><div><span>05:00</span></div><div><span>05:15</span></div><div><span>05:30</span></div><div><span>05:45</span></div><div><span>06:00</span></div><div><span>06:15</span></div><div><span>06:30</span></div><div><span>06:45</span></div><div><span>07:00</span></div><div><span>07:15</span></div><div><span>07:30</span></div><div><span>07:45</span></div><div><span>08:00</span></div><div><span>08:15</span></div><div><span>08:30</span></div><div><span>08:45</span></div><div><span>09:00</span></div><div><span>09:15</span></div><div><span>09:30</span></div><div><span>09:45</span></div><div><span>10:00</span></div><div><span>10:15</span></div><div><span>10:30</span></div><div><span>10:45</span></div><div><span>11:00</span></div><div><span>11:15</span></div><div><span>11:30</span></div><div><span>11:45</span></div><div><span>12:00</span></div><div><span>12:15</span></div><div><span>12:30</span></div><div><span>12:45</span></div><div><span>13:00</span></div><div><span>13:15</span></div><div><span>13:30</span></div><div><span>13:45</span></div><div><span>14:00</span></div><div><span>14:15</span></div><div><span>14:30</span></div><div><span>14:45</span></div><div><span>15:00</span></div><div><span>15:15</span></div><div><span>15:30</span></div><div><span>15:45</span></div><div><span>16:00</span></div><div><span>16:15</span></div><div><span>16:30</span></div><div><span>16:45</span></div><div><span>17:00</span></div><div><span>17:15</span></div><div><span>17:30</span></div><div><span>17:45</span></div><div><span>18:00</span></div><div><span>18:15</span></div><div><span>18:30</span></div><div><span>18:45</span></div><div><span>19:00</span></div><div><span>19:15</span></div><div><span>19:30</span></div><div><span>19:45</span></div><div><span>20:00</span></div><div><span>20:15</span></div><div><span>20:30</span></div><div><span>20:45</span></div><div><span>21:00</span></div><div><span>21:15</span></div><div><span>21:30</span></div><div><span>21:45</span></div><div><span>22:00</span></div><div><span>22:15</span></div><div><span>22:30</span></div><div><span>22:45</span></div><div><span>23:00</span></div><div><span>23:15</span></div><div><span>23:30</span></div><div><span>23:45</span></div>
+    
+                    
+                </div>
+    
+    
+            </div>
+    
             
-            console.log(ind);
-            if (ind !== -1) {
-              highlighted_days.splice(ind, 1);
-            }
-        }
+    
+    
+        </div>
+        <div class="excess-space">
+    
+        </div>
+    
+        
 
-        createMonthDates(currdate);
+        <div id="daymodal" class="modal-day">
+            <div class="daymodal-content">
+            <fieldset id='modal-fieldset'>
 
-        const leftarrow = document.querySelector(".arrow.leftarr");
+                <div class="week-month">
+                    <div class="day-names-month">
+                        <div>
+                            <div class="day-name-month">
+                                <span>Apr</span>
+                                <span>12</span>
+                                <span>Sun</span>
+                            </div>
+                        </div>
+            
+                    </div>
+                    <div class="week-days-month">
+                        <div class="hours-month">
+                            <div>00:00</div>
+                            <div>01:00</div>
+                            <div>02:00</div>
+                            <div>03:00</div>
+                            <div>04:00</div>
+                            <div>05:00</div>
+                            <div>06:00</div>
+                            <div>07:00</div>
+                            <div>08:00</div>
+                            <div>09:00</div>
+                            <div>10:00</div>
+                            <div>11:00</div>
+                            <div>12:00</div>
+                            <div>13:00</div>
+                            <div>14:00</div>
+                            <div>15:00</div>
+                            <div>16:00</div>
+                            <div>17:00</div>
+                            <div>18:00</div>
+                            <div>19:00</div>
+                            <div>20:00</div>
+                            <div>21:00</div>
+                            <div>22:00</div>
+                            <div>23:00</div>
+                        </div>
+                        <div class="week-columns-month">
+                                <div><span>00:00</span></div><div><span>00:15</span></div><div><span>00:30</span></div><div><span>00:45</span></div><div><span>01:00</span></div><div><span>01:15</span></div><div><span>01:30</span></div><div><span>01:45</span></div><div><span>02:00</span></div><div><span>02:15</span></div><div><span>02:30</span></div><div><span>02:45</span></div><div><span>03:00</span></div><div><span>03:15</span></div><div><span>03:30</span></div><div><span>03:45</span></div><div><span>04:00</span></div><div><span>04:15</span></div><div><span>04:30</span></div><div><span>04:45</span></div><div><span>05:00</span></div><div><span>05:15</span></div><div><span>05:30</span></div><div><span>05:45</span></div><div><span>06:00</span></div><div><span>06:15</span></div><div><span>06:30</span></div><div><span>06:45</span></div><div><span>07:00</span></div><div><span>07:15</span></div><div><span>07:30</span></div><div><span>07:45</span></div><div><span>08:00</span></div><div><span>08:15</span></div><div><span>08:30</span></div><div><span>08:45</span></div><div><span>09:00</span></div><div><span>09:15</span></div><div><span>09:30</span></div><div><span>09:45</span></div><div><span>10:00</span></div><div><span>10:15</span></div><div><span>10:30</span></div><div><span>10:45</span></div><div><span>11:00</span></div><div><span>11:15</span></div><div><span>11:30</span></div><div><span>11:45</span></div><div><span>12:00</span></div><div><span>12:15</span></div><div><span>12:30</span></div><div><span>12:45</span></div><div><span>13:00</span></div><div><span>13:15</span></div><div><span>13:30</span></div><div><span>13:45</span></div><div><span>14:00</span></div><div><span>14:15</span></div><div><span>14:30</span></div><div><span>14:45</span></div><div><span>15:00</span></div><div><span>15:15</span></div><div><span>15:30</span></div><div><span>15:45</span></div><div><span>16:00</span></div><div><span>16:15</span></div><div><span>16:30</span></div><div><span>16:45</span></div><div><span>17:00</span></div><div><span>17:15</span></div><div><span>17:30</span></div><div><span>17:45</span></div><div><span>18:00</span></div><div><span>18:15</span></div><div><span>18:30</span></div><div><span>18:45</span></div><div><span>19:00</span></div><div><span>19:15</span></div><div><span>19:30</span></div><div><span>19:45</span></div><div><span>20:00</span></div><div><span>20:15</span></div><div><span>20:30</span></div><div><span>20:45</span></div><div><span>21:00</span></div><div><span>21:15</span></div><div><span>21:30</span></div><div><span>21:45</span></div><div><span>22:00</span></div><div><span>22:15</span></div><div><span>22:30</span></div><div><span>22:45</span></div><div><span>23:00</span></div><div><span>23:15</span></div><div><span>23:30</span></div><div><span>23:45</span></div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <!-- <i class="fas fa-times close-sign"></i> -->
+            <span class="close-sign close-sign-month">&times;</span>
+            </div>
+        </div>
 
-        const rightarrow = document.querySelector(".arrow.rightarr");
+        <button class="submit-options-btn">Publish</button>
+        
+    </div>
 
-        leftarrow.addEventListener('click', event => {
-            clearcurrentmonth();
-            createMonthDates(prevmonth(currdate));
-        });
+    
 
-        rightarrow.addEventListener('click', event => {
-            clearcurrentmonth();
-            createMonthDates(nextmonth(currdate));
-        });
 
-        document.getElementById('daytodate').addEventListener('click', function (e) {
-            if (e.target.classList.contains("selected")) {
-                e.target.classList.remove("selected");
-                deleteDate(currdate, e.target.innerHTML);
-            } else {
-                e.target.classList.add("selected");
-                saveDate(currdate, e.target.innerHTML);
-            }
-        })
-    </script>
+    <div id="publish-modal" class="modal-sign">
+        <!-- <div > -->
+          
+          <form class="publish modal-sign-content" action="#">
+            <span class="close-sign">&times;</span>
+            <fieldset>
+                <!-- <i class="fas fa-sign-in-alt fa-4x" id="sign-in-icon"></i> -->
+                <h1>Publish MeetMe</h1> 
+                <hr>
+
+                <div class='inputWithIcon'>
+                    <label for="meetme-name"><strong>MeetMe name</strong> <br></label>
+                    <input type="text" name="MeetMeName" id="meetme-name" placeholder="Enter a name for your MeetMe" required>
+                    <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+                    <br> 
+                </div>
+                
+  
+                <ul class="ks-cboxtags">
+                  <li><input type="checkbox" id="checkboxOne" value="oneOption"><label for="checkboxOne">Limit to 1 option per user</label></li>
+                </ul>
+                <br>
+      
+      
+              <button id='final-publish'>Publish MeetMe</button>
+            </fieldset>
+        </form>
+        
+          
+    </div>
+
+
+
+
+
+    
+      
+      
+    <script src="js/modal.js"></script>
+    <script src='js/signinpsw.js'></script>
+    <script src='js/signuppsw.js'></script>
+    <script src="js/monthview.js"></script>
+
+
 </body>
 </html>

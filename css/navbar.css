@@ -105,7 +105,7 @@ nav a.menu:hover {
   cursor: pointer;
   border: 3px solid transparent;
   transition: all 0.1s ease;
-  padding: auto;
+  /* padding: auto; */
   height: 3em;
   /* margin-left: 5px; */
   outline: none;
