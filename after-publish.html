@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publish Meetme</title>
+    <script src="https://kit.fontawesome.com/285af68c5a.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/signinstyle.css">
+    <link rel="stylesheet" href="css/signupstyle.css">
+
+    <link rel="stylesheet" href="css/after-publish.css">
+    <!-- <link rel="stylesheet" href="css/fontawesome-free-5.15.3-web/css/all.css"> -->
+</head>
+<body>
+    <nav>
+        <button class="menu-nav-button" onclick="location.href='index.html';">Home</button>
+        <button class="menu-nav-button" onclick="location.href='monthly_calendar.html';">Create a MeetMe</button>
+        <button class="menu-nav-button">My meetings</button>
+        <div class="right">
+          <button class="menu-nav-button" id="signinbtn">Sign In</button>
+          <button class="menu-nav-button" id="signuplink">Sign Up</button>
+        </div>
+    </nav>
+
+
+    <div id="signinmodal" class="modal-sign">
+        <!-- <div > -->
+          
+          <form class="signin modal-sign-content" action="#">
+            <span class="close-sign">&times;</span>
+            <fieldset>
+                <i class="fas fa-sign-in-alt fa-4x" id="sign-in-icon"></i>
+                <h1>Sign in</h1> 
+                <hr>
+      
+                <div class='inputWithIcon'>
+                    <label for="email-signin"><strong>Email</strong> <br></label>
+                    <input type="email" name="UserEmail" id="email-signin" placeholder="Enter Email" required>
+                    <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+                    <br> 
+                </div>
+      
+                <div class='inputWithIconPas'>
+                    <label for="password-signin"><strong>Password</strong> <br></label>
+                    <input type="password" name="UserPass" id="password-signin" placeholder="Enter Password" required>
+                    <i class="fa fa-eye fa-lg fa-fw" id="togglePasswordSignIn"></i>
+                    <br> 
+                </div>
+        
+              
+      
+      
+              <a href="" id='forgot-pass'><u>Forgot Password ?</u></a>
+              <br>
+      
+              <button>Sign In</button>
+            </fieldset>
+          </form>
+    </div>
+      
+    <div id="signupmodal" class="modal-sign">
+        <!-- <div class="modal-content"> -->
+          
+          <form  class="signup modal-sign-content" action="#">
+            <span class="close-sign">&times;</span>
+            <fieldset>
+                <i class="fas fa-user-plus fa-4x" id="user-plus-icon"></i>
+                <h1>Sign up</h1>
+                
+                <p>Please fill this form to create an account</p>
+                <hr>
+      
+                <div class='inputWithIcon'>
+                    <label for="full-name-signup"><strong>Full Name</strong> <br></label>
+                    <input type="text" name="UserName" id="full-name-signup" placeholder="Enter Full Name" required>
+                    <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+                </div>
+                
+                <div class='inputWithIcon'>
+                    <label for="email-signup"><strong>Email</strong> <br></label>
+                    <input type="email" name="UserEmail" id="email-signup" placeholder="Enter Email" required>
+                    <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+                </div>
+      
+                <div class='inputWithIconPas'>
+                    <label for="password-signup"><strong>Password</strong> <br></label>
+                    <input type="password" name="UserPass" id="password-signup" placeholder="Enter Password" required>
+                    <i class="fa fa-eye fa-lg fa-fw" id="togglePassword"></i>
+                </div>
+      
+                <div class='inputWithIconPas'>
+                    <label for="password2-signup"><strong>Retype Password</strong> <br></label>
+                    <input type="password" name="UserPass2" id="password2-signup" placeholder="Enter Password" required>
+                    <i class="fa fa-eye fa-lg fa-fw" id="togglePassword2"></i>
+                </div>
+                
+                <button>Sign Up</button>
+            </fieldset>
+        </form>
+    </div>
+
+
+    <div id="modal-after-pub" class="modal-after-publish" style="display: block;">
+        <!-- <div > -->
+          
+            <span class="close-sign">&times;</span>
+            <fieldset>
+                <!-- <i class="fas fa-sign-in-alt fa-4x" id="sign-in-icon"></i> -->
+                <h1>Congratulations you created a MeetMe</h1> 
+                <hr>
+
+                <h2>Invite participants</h2>
+
+                <label style="display: block; color: #c05b2d;">
+                    Share this link with the voters. Everyone can vote - no account required.
+                </label>
+
+                <div class="link-container">
+                    <i class="fas fa-link"></i>
+                    <input type="text" name="MeetMeLink" id="meetme-link" value="www.meet--me/linkgdfgrthbtyrtbyvrtecervervhrhvecrsgvtthvergcer" readonly="readonly">
+                    <!-- <button id='copy-btn'>Copy</button> -->
+                    <div class="tooltip">
+                        <button id='copy-btn' onclick="myFunction()" onmouseout="outFunc()">
+                            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                            Copy 
+                        </button>
+                    </div>
+                    
+                </div>
+
+                
+  
+
+                <br>
+      
+      
+            </fieldset>
+    </div>
+
+
+
+    <script src="js/modal.js"></script>
+    <script src='js/signinpsw.js'></script>
+    <script src='js/signuppsw.js'></script>
+
+
+    <script>
+        function clearSelection() {
+        let sel;
+        if ( (sel = document.selection) && sel.empty ) {
+            sel.empty();
+        } else {
+            if (window.getSelection) {
+                window.getSelection().removeAllRanges();
+            }
+            let activeEl = document.activeElement;
+            if (activeEl) {
+                let tagName = activeEl.nodeName.toLowerCase();
+                if ( tagName == "textarea" ||
+                        (tagName == "input" && activeEl.type == "text") ) {
+                    // Collapse the selection to the end
+                    activeEl.selectionStart = activeEl.selectionEnd;
+                }
+            }
+        }
+}
+        function myFunction() {
+          var copyText = document.getElementById("meetme-link");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999);
+          document.execCommand("copy");
+          
+          var tooltip = document.getElementById("myTooltip");
+          tooltip.innerHTML = "Copied: " + copyText.value;
+          clearSelection() 
+        }
+        
+        function outFunc() {
+          var tooltip = document.getElementById("myTooltip");
+          tooltip.innerHTML = "Copy to clipboard";
+        }
+        </script>
+    
+
+
+    
+</body>
+</html>

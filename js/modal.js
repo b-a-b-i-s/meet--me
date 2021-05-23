@@ -1,9 +1,9 @@
-var modalin = document.getElementById("signinmodal");
-var btnin = document.getElementById("signinbtn");
-var spanin = document.getElementsByClassName("close-sign")[0];
-var modalup = document.getElementById("signupmodal");
-var linkup = document.getElementById("signuplink");
-var spanup = document.getElementsByClassName("close-sign")[1];
+const modalin = document.getElementById("signinmodal");
+const btnin = document.getElementById("signinbtn");
+const spanin = document.getElementsByClassName("close-sign")[0];
+const modalup = document.getElementById("signupmodal");
+const linkup = document.getElementById("signuplink");
+const spanup = document.getElementsByClassName("close-sign")[1];
 
 btnin.onclick = function () {
     modalin.style.display = "block";
