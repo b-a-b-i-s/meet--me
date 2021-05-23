@@ -1,5 +1,5 @@
 const togglePasswordSignIn = document.querySelector('#togglePasswordSignIn');
-const passwordSignIn = document.querySelector('#password');
+const passwordSignIn = document.querySelector('#password-signin');
 
 togglePasswordSignIn.addEventListener('click', function (e) {
   // toggle the type attribute
