@@ -363,6 +363,7 @@ cursor: pointer;
     box-shadow: 2px 8px 15px #eb6e34;
     grid-row: 3/4;
     grid-column: 1/2;
+    overflow: hidden;
 }
 
 
