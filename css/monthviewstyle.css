@@ -172,7 +172,8 @@ body {
     grid-row: 1/4;
     grid-column: 2/3;
     display: none;
-    /* position: relative; */
+    position: sticky;
+    top : 1%;
     /* padding-top: 20px; */
     /* top: -100px; */
     /* width: 100%; */
@@ -196,7 +197,7 @@ body {
     margin-top: 10%;
     background-color: white;
     text-align: center;
-    border: 1px solid grey;
+    /* border: 1px solid #c2480f; */
     z-index: 10;
     border-radius: 10px;
 }
@@ -204,6 +205,8 @@ body {
 #modal-fieldset {
     border: 0; 
     padding: 12px 14px;
+    border: 1px solid #c2480f;
+    
     /* margin: 5px; */
     border-radius: 10px;
     flex-grow: 1;
