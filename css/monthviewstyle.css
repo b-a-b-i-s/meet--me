@@ -34,37 +34,41 @@ body, html {
 }
 
 .week-month {
-    max-width: 250px;
+    
+    /* max-width: 250px; */
     margin: auto;
     background-color: white;
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: autSo auto auto;
     margin-bottom: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    /* border: ; */
 }
 
 .day-names-month {
     top: 80.8px;
     grid-row: 2 / 3;
     text-align: center;
-    background-color: white;
+    background-color: #eb6e34;
     z-index: 200000;
-    border-left: 1px solid grey;
+    /* border: 1px solid grey; */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
-.day-names-month > * {
-    border: 1px solid grey;
-    border-left: 0;
-    margin: 0;
-    width: 100%;
-}
 
-.day-names-month > *:first-child {
-    width: calc(100% - 1px);
-    /* border-left: 1px solid grey; */
-}
-
-.day-names-month {
-    border-right: 1px solid grey;
+.day-name-month {
+    margin: 0.3em;
+    padding: 0.4em;
+    border: 2px solid transparent !important;
+    background-color: #eb6e34 !important;
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+    cursor: auto !important;
+    outline: none;
+    /* position: sticky; */
 }
 
 .day-name-month {
@@ -75,26 +79,16 @@ body, html {
     /* position: sticky; */
 }
 
-.day-name-month:hover {
-    margin: 0.3em;
-    padding: 0.4em;
-    border: 2px solid grey;
-    background-color: rgba(76, 192, 72, 0.452);
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.day-names-month:first-child {
-    border-left: 1px solid grey;
-}
 
 .week-days-month {
     grid-row: 3 / 4;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    border-top: 1px solid grey;
-    border-left: 1px solid grey;
-    border-bottom: 1px solid grey;
+    /* border: 1px solid grey; */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* border-left: 1px solid grey;
+    border-bottom: 1px solid grey;  */
     overflow-y: scroll;
     overflow-x: hidden;
     height: 34em;
@@ -120,15 +114,17 @@ body, html {
     padding: 2.5em 0;
 }
 
+.hours-month :last-child {
+    border-bottom: 0;
+}
+
 .week-columns-month {
     grid-column: 2 / 3;
     display: grid;
     grid-template-rows: repeat(96,1.5em);
 }
 
-.week-columns-month>div {
-    border-right: 1px solid grey;
-}
+
 
 .week-columns-month>div>span {
     display: none;
@@ -141,6 +137,10 @@ body, html {
 
 .week-columns-month div:nth-child(4n+2) {
     border-bottom: 1px dashed grey;
+}
+
+.week-columns-month div:last-child {
+    border-bottom: 0;
 }
 
 .past {
@@ -170,6 +170,7 @@ body, html {
     display: none;
     position: sticky;
     top : 1%;
+    height: 110%;
     /* padding-top: 20px; */
     /* top: -100px; */
     /* width: 100%; */
@@ -185,23 +186,29 @@ body, html {
     position: relative;
     background-color: #eb6e34;
     margin: auto;
+    /* border-radius: 10px; */
     /* border: none; */
     /* width: 18%; */
     /* margin: 0; */
     min-width: 120px;
-    margin-right: 2%;
-    margin-top: 10%;
+    margin-right: 7%;
+    margin-left: 7%;
+    margin-top: 12%;
     background-color: white;
     text-align: center;
     /* border: 1px solid #c2480f; */
     z-index: 10;
+    /* border-radius: 10px; */
+    border: 0;
     border-radius: 10px;
 }
 
 #modal-fieldset {
     border: 0; 
-    padding: 12px 14px;
-    border: 1px solid #c2480f;
+    padding: 0;
+    border: 0;
+    /* border: 2px solid #eb6e34; */
+    box-shadow: 2px 5px 8px #eb6e34;
     
     /* margin: 5px; */
     border-radius: 10px;
@@ -215,6 +222,9 @@ body, html {
     position: absolute;
     height: 18px;
     right: 0;
+    right: 3px;
+    top: -5px;
+    /* top: ; */
     border-radius: 10px;
     font-size: 28px;
     font-weight: bold;
@@ -223,7 +233,7 @@ body, html {
 
 .close-sign-month:hover,
 .close-sign-month:focus {
-    color: #c2480f;
+    color: #85310a;
     text-decoration: none;
     cursor: pointer;
 }
@@ -256,18 +266,33 @@ body, html {
   display: inline-block;
 }
 
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 0;
+    margin-left: 4%;
+    margin-right: 4%;
+}
 
 .weekdays li {
   display: inline-block;
-  width: 13%;
+  /* width: 13%; */
   text-align: center;
   font-weight: bold;
+  margin: auto;
+}
+
+.days {
+    padding: 0;
+    margin-left: 4%;
+    margin-right: 4%;
 }
 
 .days li {
   list-style-type: none;
   display: inline-block;
   width: 13%;
+  width: calc( 100% / 7);
   padding: 2% 0%;
   text-align: center;
   user-select: none; 
@@ -370,12 +395,13 @@ cursor: pointer;
 .week-title {
     /* position: sticky; */
     top: 0;
+    /* border-radius: 10px; */
     /* background-color: white; */
     background-color: #eb6e34;
     display: flex;
     grid-row: 1 / 2;
     text-align: center;
-    border: 1px solid grey;;
+    /* border: 1px solid grey;; */
     border-bottom: 0;
     flex-wrap: nowrap;
     z-index: 200000;
@@ -435,13 +461,13 @@ cursor: pointer;
     text-align: center;
     background-color: white;
     z-index: 200000;
-    border-left: 1px solid grey;
+    /* border-left: 1px solid transparent; */
     width: 100%;
 }
 
 .day-names > * {
     border: 1px solid grey;
-    border-left: 0;
+    border-left: 1px solid transparent;
     margin: 0;
     width: 100%;
 }
@@ -511,8 +537,9 @@ cursor: pointer;
     grid-row: 3 / 4;
     display: grid;
     grid-template-columns: 1fr 7fr;
-    border: 1px solid grey;
-    border-left: 1px solid grey;
+    /* border-top: 1px solid grey; */
+    /* border: 1px solid grey; */
+    /* border-left: 1px solid grey; */
     overflow-y: scroll;
     height: 34em;
     border-bottom-left-radius: 15px;
@@ -532,6 +559,7 @@ cursor: pointer;
     grid-template-rows: repeat(24,6em);
     text-align: center;
     border-right: 1px solid grey;
+    border-left: 1px solid transparent;
     /* border-left: 1px solid grey; */
     /* border-top: 1px solid grey; */
 
@@ -564,6 +592,7 @@ cursor: pointer;
 
 .week-columns>div {
     border-right: 1px solid grey;
+    border-left: 1px solid transparent;
 }
 
 /* .week-columns>div>div {
@@ -585,8 +614,11 @@ cursor: pointer;
 
 .week-columns div:nth-child(4n) {
     border-bottom: 1px solid grey;
-    /* border-bott: 1px solid grey; */
 }
+
+/* .week-columns div:nth-child(4n+1) {
+    border-top: 1px solid grey;
+} */
 
 /* .column-mon div:nth-child(4n+1), .column-tue div:nth-child(4n+1), .column-wed div:nth-child(4n+1),
 .column-thu div:nth-child(4n+1), .column-fri div:nth-child(4n+1),
@@ -798,3 +830,31 @@ cursor: pointer;
     transform: scale(0.99);
     outline: none;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey; 
+  /* border-radius: 10px; */
+  /* border-top-left-radius: 0;
+  border-top-right-radius: 0; */
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /* background: #888;  */
+  background: #eb6e34;
+  /* border-radius: 10px; */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: #555;  */
+  background: #c2480f;
+}
+
+
