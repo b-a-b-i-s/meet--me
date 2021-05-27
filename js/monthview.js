@@ -760,6 +760,7 @@ function createDayCalendar(date) {
     const thisDay = new Date(currentYear, currentMonth, currentDay);
     days[0].textContent = thisDay.toLocaleString("en-US", {month: "short"});
     days[1].textContent = thisDay.toLocaleString("en-US", {day: "numeric"});
+    days[2].textContent = thisDay.toLocaleString("en-US", {year: "numeric"});
 
     if (thisDay.getTime() === initialCurrentDate.getTime()) {
         days[0].parentElement.classList.add('current-day')
@@ -1416,6 +1417,8 @@ weekSelector.addEventListener('click', (e) => {
         const weekDays = document.querySelector('.week-days')
         const scrollbarWidth = weekDays.offsetWidth - weekDays.clientWidth;
         // console.log(scrollbarWidth)
+        // document.querySelector('#hours')
+        let width = Number(document.querySelector('.hours').offsetWidth);
 
         const dayNames = document.querySelector('.day-names')
         let gridTemplateCols = document.defaultView.getComputedStyle(dayNames).gridTemplateColumns.slice(0,-4)
@@ -1423,7 +1426,9 @@ weekSelector.addEventListener('click', (e) => {
         else {
             const div = document.createElement('div')
             dayNames.appendChild(div)
-            dayNames.style.gridTemplateColumns = 'repeat(8, 1fr)' + (scrollbarWidth) + 'px';
+            dayNames.style.gridTemplateColumns = 'repeat(8, 1fr)' + (scrollbarWidth+3) + 'px';
+            dayNames.style.gridTemplateColumns = `calc( (100% - ${scrollbarWidth+3}px)/8 - 1px ) calc( (100% - ${scrollbarWidth+3}px)/8 ) repeat(6, calc( (100% - ${scrollbarWidth+3}px)/8 + 0.32px )) ${scrollbarWidth+3}px`;
+            // dayNames.style.gridTemplateColumns = `${width-1}px repeat(7, ${width}px) ${scrollbarWidth}px`;
         }
     }
 
@@ -1473,14 +1478,14 @@ publishBtn.onclick = function () {
 
 window.onclick = function (event) {
     // console.log(event.target);
-    if (event.target == modalday) {
-        monthAll.style.gridTemplateColumns = '1fr'
-        modalday.style.display = "none";
-        if(document.querySelectorAll(clickedDay).length===0){
-            clickeddate.classList.remove("selected");
-            deleteDate(currdate, clickeddate.innerHTML);
-        }
-    }
+    // if (event.target == modalday) {
+    //     monthAll.style.gridTemplateColumns = '1fr'
+    //     modalday.style.display = "none";
+    //     if(document.querySelectorAll(clickedDay).length===0){
+    //         clickeddate.classList.remove("selected");
+    //         deleteDate(currdate, clickeddate.innerHTML);
+    //     }
+    // }
     if (event.target == modalin) {
         modalin.style.display = "none";
     }
@@ -1535,6 +1540,8 @@ finalPublishBtn.onclick = () => {
 
 
     console.log(lista)
+
+    
 
 
     demo()
