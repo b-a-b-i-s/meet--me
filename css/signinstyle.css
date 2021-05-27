@@ -113,36 +113,3 @@
     right: 20px;
 }
 
-.inputWithIcon, .inputWithIconPas{
-    position: relative;
-}
-
-.inputWithIcon input {
-    box-sizing: border-box;
-    padding-right: 35px;
-}
-
-.inputWithIcon i{
-    position: absolute;
-    top: 41px;
-    right: 11%;
-    color: #eb6e34bb;
-}
-
-
-.inputWithIconPas input {
-    box-sizing: border-box;
-    padding-right: 33px;
-}
-
-.inputWithIconPas i{
-    position: absolute;
-    right: 11%;
-    top: 41px;
-    cursor: pointer;
-    color: #eb6e34bb;
-}
-
-.inputWithIcon input:focus + i, .inputWithIcon input:hover + i, .inputWithIconPas input:focus + i, .inputWithIconPas input:hover + i{
-    color: #EB6E34;
-}
