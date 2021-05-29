@@ -143,3 +143,9 @@ nav:focus-within {
 nav.scroll-down {
   top: -100%;
 } */
+
+@media only screen and (max-width: 1000px) {
+  .menu-nav-button{
+    font-size: xx-large;
+  }
+}
