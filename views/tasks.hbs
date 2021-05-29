@@ -1,0 +1,24 @@
+
+
+
+<div class="container">
+    <h1> μην ξεχάσω...</h1>
+    <div>
+        <input id="new-item" type="text" name="item">
+        <button id="clear-button">
+            <span title="delete all" class="material-icons"> delete </span>
+        </button>
+    </div>
+    <ul id="todo-list">
+        {{#each tasks}}
+            <li 
+            data-id="{{this.id}}"
+            {{#if this.status}}
+                class="completed"
+            {{/if}}
+            >
+                {{this.task}}
+            </li>
+        {{/each}}
+    </ul>
+</div>

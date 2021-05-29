@@ -1,15 +1,21 @@
 {
-  "name": "root",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "start.js",
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "engines": {
-    "node": "14.x"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "nodemon --inspect ./start.js",
+    "watch": "nodemon ./start.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "lockfile": "^1.0.4",
+    "mysql": "^2.18.1"
+  }
 }
