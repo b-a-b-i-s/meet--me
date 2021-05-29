@@ -108,7 +108,7 @@
     /* display: inline-block; */
     position: relative;
     float: right;
-    top: 7px;
+    /* top: 0px; */
     /* left: 100px; */
     right: 20px;
 }
