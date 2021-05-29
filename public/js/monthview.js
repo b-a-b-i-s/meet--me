@@ -1547,5 +1547,5 @@ finalPublishBtn.onclick = () => {
     demo()
 
     // ADD CODE HERE
-    window.location.href = 'after-publish.html'
+    window.location.href = 'publish'
 }
