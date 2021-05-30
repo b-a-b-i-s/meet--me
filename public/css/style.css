@@ -55,7 +55,7 @@
   /* transition: all 2s ease;         <<<<<<<<<<<----------------------- */
 }
 
-.img4:hover {
+.img4:hover{
   /* transition: ; */
     transition: all 1s ease-out;
     box-shadow: inset 50em -60em 30em rgba(0,0,0,0.25),  3em 3em 1em rgba(0,0,0,0.1);
@@ -214,7 +214,8 @@
     height: 50%;
     margin: auto;
     /* margin-top: 20%; */
-    width: 80%;
+    width: 90%;
+    padding: 5%;
     grid-template-columns: 48% 4% 48%;
   }
   .img4 {
@@ -223,7 +224,14 @@
   }
   .tryme {
     /* margin-top: 50%; */
-  }  
+    padding: 2%;
+    height: 120%;
+  } 
+
+  .trywrapper .tryme button {
+    width: 80%;
+    margin: 0 8%;
+} 
 
 }
 
