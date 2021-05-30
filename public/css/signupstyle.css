@@ -13,6 +13,10 @@
     box-shadow: 20px 20px rgb(150, 66, 27); */
 }
 
+.signup>fieldset>h1 {
+    margin-top: 0;
+}
+
 .signup input{
     width: 80%;
     padding: 0.5em;
@@ -99,7 +103,7 @@
 #user-plus-icon {
     position: relative;
     float: right;
-    top: 12px;
+    top: 3px;
     right: 15px;
 }
 
@@ -114,7 +118,7 @@
 
 .inputWithIcon i{
     position: absolute;
-    top: 54px;
+    top: 46px;
     right: 11%;
     color: #eb6e34bb;
 }
@@ -128,7 +132,7 @@
 .inputWithIconPas i{
     position: absolute;
     right: 11%;
-    top: 54px;
+    top: 46px;
     cursor: pointer;
     color: #eb6e34bb;
 }
@@ -139,5 +143,5 @@
 
 
 .inputWithIcon *, .inputWithIconPas *{
-    font-size: large;
+    font-size: 1em;
 }
