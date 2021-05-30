@@ -27,6 +27,12 @@
     box-shadow: 20px 20px rgb(150, 66, 27);
 }
 
+.modal-sign-content-up {
+
+    margin: auto;
+
+}
+
 .close-sign {
     color: #aaaaaa;
     float: right;

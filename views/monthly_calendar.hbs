@@ -226,7 +226,7 @@
     <div id="publish-modal" class="modal-sign">
         <!-- <div > -->
           
-          <form class="publish modal-sign-content" action="#">
+          <form class="publish modal-sign-content" action="javascript:void(0);">
             <span class="close-sign">&times;</span>
             <fieldset>
                 <!-- <i class="fas fa-sign-in-alt fa-4x" id="sign-in-icon"></i> -->
@@ -236,7 +236,13 @@
                 <div class='inputWithIcon'>
                     <label for="meetme-name"><strong>MeetMe name</strong> <br></label>
                     <input type="text" name="MeetMeName" id="meetme-name" placeholder="Enter a name for your MeetMe" required>
-                    <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+                    <br> 
+                </div>
+
+                <div class='inputWithIcon'>
+                    <label style="meetme-description"><strong>Description</strong> <br></label>
+                    <textarea id="description" name="description" rows="4" placeholder="Enter a description for your MeetMe (Optional)"></textarea>
+                    {{!-- <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i> --}}
                     <br> 
                 </div>
                 

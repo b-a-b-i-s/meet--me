@@ -921,6 +921,40 @@ cursor: pointer;
 }
 
 
+
+.publish textarea{
+    box-sizing: border-box;
+    resize: none;
+    width: 80%;
+    padding: 0.5em;
+    margin: 1em 0 2em 0;
+    border: 2px solid #eb6e347a;
+    border-radius: 8px;
+    transition: all 0.1s ease;
+}
+
+.publish textarea:hover {
+    border: 2px solid #EB6E34;
+}
+
+.publish textarea::placeholder {
+    color: #31170bd2;
+    transition: none;
+}
+
+.publish textarea:focus {
+    border: 2px solid #EB6E34;
+    outline: none; 
+    box-shadow: 0 0 0 2px #EB6E34;
+    border-radius: 8px;
+}
+    
+.publish textarea:focus::placeholder {
+    color: rgba(0, 0, 0, 0.486);
+}
+
+
+
 .publish button{
     display:block;
     font-family: tahoma;
@@ -1054,6 +1088,11 @@ ul.ks-cboxtags li input[type="checkbox"] {
 ul.ks-cboxtags li input[type="checkbox"] {
   position: absolute;
   opacity: 0;
+}
+
+#description {
+    font: 400 13.3333px Arial;
+    font-size: 1em;
 }
 
 /* ul.ks-cboxtags li input[type="checkbox"]:focus + label {

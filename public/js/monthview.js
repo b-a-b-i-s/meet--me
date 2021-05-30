@@ -1538,14 +1538,24 @@ finalPublishBtn.onclick = () => {
         lista.push(dict)
     })
 
+    const name = document.querySelector("#meetme-name").value
 
-    console.log(lista)
+    const oneVote = document.querySelector("#checkboxOne").checked
 
-    
+    const description = document.querySelector("#description").value
 
+    console.log({"name":name, "oneVote":oneVote, "description":description, "lista":lista})
 
-    demo()
+    if ((lista.length != 0) && (name != '')) {
+         // demo()
 
-    // ADD CODE HERE
-    window.location.href = 'publish'
+        // ADD CODE HERE
+        //fetch
+        window.location.href = '/publish'
+    }
+    else if (lista.length == 0){
+        alert("No options selected")
+    }
+
+   
 }
