@@ -20,7 +20,7 @@ body, html {
 }
 
 .view-selector .selected {
-    color: blue;
+    color: #ac4110;
     text-decoration: underline;
 }
 
@@ -30,7 +30,7 @@ body, html {
 }
 
 .view-selector .unselected:hover {
-    color: blue;
+    color: #ac4110;
     text-decoration: underline;
 }
 
