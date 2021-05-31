@@ -231,7 +231,10 @@
   .trywrapper .tryme button {
     width: 80%;
     margin: 0 8%;
-} 
+  } 
 
+  html {
+    background-color: #d2e6a5 !important;
+  }
 }
 
