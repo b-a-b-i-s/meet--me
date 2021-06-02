@@ -1501,22 +1501,22 @@ window.onclick = function (event) {
 
 
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
 
-async function demo() {
-  console.log('Taking a break...');
-  await sleep(2000);
-  console.log('Two seconds later, showing sleep in a loop...');
+// async function demo() {
+//   console.log('Taking a break...');
+//   await sleep(2000);
+//   console.log('Two seconds later, showing sleep in a loop...');
 
-  // Sleep in loop
-  for (let i = 0; i < 15; i++) {
-    if (i === 3)
-      await sleep(2000);
-    console.log(i);
-  } 
-}
+//   // Sleep in loop
+//   for (let i = 0; i < 15; i++) {
+//     if (i === 3)
+//       await sleep(2000);
+//     console.log(i);
+//   } 
+// }
 
 
 
@@ -1544,14 +1544,40 @@ finalPublishBtn.onclick = () => {
 
     const description = document.querySelector("#description").value
 
-    console.log({"name":name, "oneVote":oneVote, "description":description, "lista":lista})
+    const dataToSend = {"name":name, "oneVote":oneVote, "description":description, "lista":lista};
 
     if ((lista.length != 0) && (name != '')) {
          // demo()
 
-        // ADD CODE HERE
-        //fetch
-        window.location.href = '/publish'
+
+         fetch('/add-meeting', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            // mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            },
+    
+            body: JSON.stringify(dataToSend) // body data type must match "Content-Type" header
+        })
+        .then((response) => {
+            if (response.ok) {        
+                console.log('Written to db')
+                return response.text()
+            }
+            else {
+                alert("HTTP-Error: " + response.status);
+            }
+        })
+        .then((data) => {
+            console.log(data)
+            window.location.href = '/publish/'+data
+        })
+
+        
+
+        
     }
     else if (lista.length == 0){
         alert("No options selected")

@@ -1,9 +1,9 @@
 
 
-
     <div id="modal-after-pub" class="modal-after-publish" style="display: block;">
         <!-- <div > -->
-          
+          {{!-- <span style="display: none;" id="link-span">{{url}}</span> --}}
+
             <span class="close-sign">&times;</span>
             <fieldset>
                 <div class="congrats-container">
@@ -25,7 +25,7 @@
 
                 <div class="link-container">
                     <i class="fas fa-link"></i>
-                    <input type="text" name="MeetMeLink" id="meetme-link" value="www.meet--me/linkgdfgrthbtyrtbyvrtecervervhrhvecrsgvtthvergcer" readonly="readonly">
+                    <input type="text" name="MeetMeLink" id="meetme-link" value="meet--me.herokuapp.com/meeting/{{url}}" readonly="readonly">
                     <!-- <button id='copy-btn'>Copy</button> -->
                     <div class="tooltip">
                         <button id='copy-btn' onclick="myFunction()" onmouseout="outFunc()">
