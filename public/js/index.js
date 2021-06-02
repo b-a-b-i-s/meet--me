@@ -3,7 +3,7 @@ var btnup = document.getElementById("upbtn");
 
 
 btnup.onclick = function () {
-    modalup.style.display = "block";
+    document.getElementById("signupmodal").style.display = "block";
 }
 
 

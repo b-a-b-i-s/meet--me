@@ -832,6 +832,14 @@ cursor: pointer;
     outline: none;
 }
 
+
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #eb6e34 white;
+}
+
+
 /* width */
 ::-webkit-scrollbar {
     width: 12px;
@@ -859,7 +867,13 @@ cursor: pointer;
 }
 
 
-
+.scroller {
+    width: 12px;
+    height: 100px;
+    overflow-y: scroll;
+    scrollbar-color: #eb6e34 white;
+    scrollbar-width: thin;
+  }
 
 
 

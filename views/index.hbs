@@ -1,9 +1,7 @@
-﻿
-
-<div class="svg-wrappp img1-small">
-  <div class="img1  desk bg-svg"></div>
+﻿<div class="svg-wrappp img1-small">
+  <div class="img1 desk bg-svg"></div>
 </div>
-<div class="img1  desk img1-large"></div>
+<div class="img1 desk img1-large"></div>
 
 <!-- <div class="img1m  mobile"></div> -->
 
@@ -14,53 +12,83 @@
 </div>
 
 <div class="svg-wrappp" style="z-index: 5; background: white;">
-  <div class="img2  desk bg-svg"></div>
+  <div class="img2 desk bg-svg"></div>
 </div>
 
 <!-- <div class="img2m  mobile"></div> -->
 
-
 <div lang="en" style="z-index: 6;">
   <div class="desclabel">
-  <h2>Share that schedule so that people can vote.</h2>
+    <h2>Share that schedule so that people can vote.</h2>
   </div>
 </div>
 
 <div class="svg-wrappp" style="z-index: 6; background: white;">
-  <div class="img3  desk bg-svg"></div>
+  <div class="img3 desk bg-svg"></div>
 </div>
 <!-- <div class="img3  desk"></div>
 <div class="img3m  mobile"></div> -->
 
 <div lang="en">
   <div class="desclabel">
-  <h2>Choose the most suited time slot for your meeting.</h2>
+    <h2>Choose the most suited time slot for your meeting.</h2>
   </div>
 </div>
 
-<div class="img4  desk">
-  <div class="trywrapper">
+
+<div class="img4 desk">
+
+  {{#if loggedin}}
+    <div class="trywrapper trywrapper-logged">
+      <div class="tryme tryme2 tryme2-logged {
+  grid-column: 1/2;
+}">
+        <h2>Create a meetme to organize a meeting around your schedule!</h2>
+        <img src="images/drawing.svg" alt="" />
+        <button onclick="location.href='/monthly_calendar';">Create</button>
+      </div>
+    </div>
+  {{else}}
+    <div class="trywrapper">
       <div class="tryme">
-          <h2>Start managing your schedule and meetings now!</h2>
-          <img src="images/add-user.svg" alt="">
-          <button id="upbtn">Sign Up</button>
+        <h2>Start managing your schedule and meetings now!</h2>
+        <img src="images/add-user.svg" alt="" />
+        <button id="upbtn">Sign Up</button>
       </div>
       <div class="tryme tryme2">
-          <h2>Create a meetme to organize a meeting around your schedule!</h2>
-          <img src="images/drawing.svg" alt="">
-          <button onclick="location.href='/monthly_calendar';">Create</button>
+        <h2>Create a meetme to organize a meeting around your schedule!</h2>
+        <img src="images/drawing.svg" alt="" />
+        <button onclick="location.href='/monthly_calendar';">Create</button>
       </div>
-  </div>
+    </div>
+  {{/if}}
+  
 </div>
-{{!-- <div class="img4m  mobile">
+
+
+
+{{!-- <div class="img4 desk">
+  <div class="trywrapper">
+    <div class="tryme">
+      <h2>Start managing your schedule and meetings now!</h2>
+      <img src="images/add-user.svg" alt="" />
+      <button id="upbtn">Sign Up</button>
+    </div>
+    <div class="tryme tryme2">
+      <h2>Create a meetme to organize a meeting around your schedule!</h2>
+      <img src="images/drawing.svg" alt="" />
+      <button onclick="location.href='/monthly_calendar';">Create</button>
+    </div>
+  </div>
 </div> --}}
 
 
+{{! <div class="img4m  mobile">
+</div> }}
 
-
-    {{!-- <script src="js/modal.js"></script>
-    <script src='js/signinpsw.js'></script>
-    <script src='js/signuppsw.js'></script> --}}
-<script src='js/index.js'></script>
+{{!
+<script src="js/modal.js"></script>
+<script src='js/signinpsw.js'></script>
+<script src='js/signuppsw.js'></script> }}
+<script src="/js/index.js"></script>
 <!-- <script src="js/navbar.js"></script> -->
-
