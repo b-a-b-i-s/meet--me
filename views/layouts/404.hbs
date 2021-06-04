@@ -5,9 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page not found | MeetMe</title>
+    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
+    <nav>
+        <button class="menu-nav-button" id='home-ref' data-path='/'>Home</button>
+    </nav>
     {{{body}}}
     {{!-- <h2>Error 404 - Not found</h2> --}}
 </body>
 </html>
+
+<script>
+    document.querySelector('#home-ref').addEventListener('mousedown', logMouseButton);
+
+    function logMouseButton(e) {   
+        if (typeof e === 'object') {
+            switch (e.button) {
+            case 0:
+                location.href=e.target.dataset.path;
+                break;
+            case 1:
+                window.open(e.target.dataset.path,'_blank');
+                break;
+            }
+        }
+    }
+</script>
