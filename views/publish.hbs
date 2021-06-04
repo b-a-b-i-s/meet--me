@@ -1,40 +1,34 @@
-
-
-    <div id="modal-after-pub" class="modal-after-publish" style="display: block;">
-        <!-- <div > -->
-          {{!-- <span style="display: none;" id="link-span">{{url}}</span> --}}
-
-            <span class="close-sign">&times;</span>
-            <fieldset>
-                <div class="congrats-container">
-                    <i class="fab fa-font-awesome-flag fa-4x flag1"></i>
-                    <h1>Congratulations you created a MeetMe</h1> 
-                    <i class="fab fa-font-awesome-flag fa-4x flag2"></i>
-                </div>
-                <!-- <i class="fab fa-font-awesome-flag fa-4x flag1"></i>
+<div id="modal-after-pub" class="modal-after-publish" style="display: block;">
+    <!-- <div > -->
+      {{!-- <span style="display: none;" id="link-span">{{url}}</span> --}}
+        <span id="close-go-to-mymeetings" class="close-sign" onclick="window.location.href = '{{shorturl}}';">&times;</span>
+        <fieldset>
+            <div class="congrats-container">
+                <i class="fab fa-font-awesome-flag fa-4x flag1"></i>
+                <h1>Congratulations you created a MeetMe</h1> 
                 <i class="fab fa-font-awesome-flag fa-4x flag2"></i>
-                <h1>Congratulations you created a MeetMe</h1>  -->
-                
-                <hr>
-
-                <h2>Invite participants</h2>
-
-                <label style="display: block; color: #c05b2d;">
-                    Share this link with the voters. Everyone can vote - no account required.
-                </label>
-
-                <div class="link-container">
-                    <i class="fas fa-link"></i>
-                    <input type="text" name="MeetMeLink" id="meetme-link" value="{{url}}" readonly="readonly">
-                    <!-- <button id='copy-btn'>Copy</button> -->
-                    <div class="tooltip">
-                        <button id='copy-btn' onclick="myFunction()" onmouseout="outFunc()">
-                            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
-                            Copy 
-                        </button>
-                    </div>
-                    
+            </div>
+            <!-- <i class="fab fa-font-awesome-flag fa-4x flag1"></i>
+            <i class="fab fa-font-awesome-flag fa-4x flag2"></i>
+            <h1>Congratulations you created a MeetMe</h1>  -->
+            
+            <hr>
+            <h2>Invite participants</h2>
+            <label style="display: block; color: #c05b2d;">
+                Share this link with the voters. Everyone can vote - no account required.
+            </label>
+            <div class="link-container">
+                <i class="fas fa-link"></i>
+                <input type="text" name="MeetMeLink" id="meetme-link" value="{{url}}" readonly="readonly">
+                <!-- <button id='copy-btn'>Copy</button> -->
+                <div class="tooltip">
+                    <button id='copy-btn' onclick="myFunction()" onmouseout="outFunc()">
+                        <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                        Copy 
+                    </button>
                 </div>
+                
+            </div>
 
                 
   
@@ -52,8 +46,8 @@
     <script src='js/signuppsw.js'></script> --}}
 
 
-    <script>
-        function clearSelection() {
+<script>
+    function clearSelection() {
         let sel;
         if ( (sel = document.selection) && sel.empty ) {
             sel.empty();
@@ -71,22 +65,22 @@
                 }
             }
         }
-}
-        function myFunction() {
-          var copyText = document.getElementById("meetme-link");
-          copyText.select();
-          copyText.setSelectionRange(0, 99999);
-          document.execCommand("copy");
-          
-          var tooltip = document.getElementById("myTooltip");
-          tooltip.innerHTML = "Copied: " + copyText.value;
-          clearSelection() 
-        }
-        
-        function outFunc() {
-          var tooltip = document.getElementById("myTooltip");
-          tooltip.innerHTML = "Copy to clipboard";
-        }
-        </script>
+    }
+    function myFunction() {
+      var copyText = document.getElementById("meetme-link");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      
+      var tooltip = document.getElementById("myTooltip");
+      tooltip.innerHTML = "Copied: " + copyText.value;
+      clearSelection() 
+    }
     
+    function outFunc() {
+      var tooltip = document.getElementById("myTooltip");
+      tooltip.innerHTML = "Copy to clipboard";
+    }
+</script>
+
 
