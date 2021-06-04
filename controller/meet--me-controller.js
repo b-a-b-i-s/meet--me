@@ -14,6 +14,6 @@ exports.addMeeting = (req, res) => {
 }
 
 exports.publish = (req, res) => {
-    res.render('publish', { "url":req.params.url})
+    res.render('publish', { "url":'meet--me.herokuapp.com/meeting/'+req.params.url})
 }
 

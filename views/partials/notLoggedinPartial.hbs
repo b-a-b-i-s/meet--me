@@ -1,6 +1,6 @@
 <nav>
-    <button class="menu-nav-button" id='home' data-path='/'>Home</button>
-    <button class="menu-nav-button" id='create' data-path='/monthly_calendar'>Create a MeetMe</button>
+    <button class="menu-nav-button" id='home-ref' data-path='/'>Home</button>
+    <button class="menu-nav-button" id='create-ref' data-path='/monthly_calendar'>Create a MeetMe</button>
     {{!-- <button class="menu-nav-button" onclick="location.href='/mymeetings';">My meetings</button> --}}
     <div class="right">
       <button class="menu-nav-button" id="signinbtn">Sign In</button>
@@ -85,8 +85,8 @@
 <script src='js/signinpsw.js'></script>
 <script src='js/signuppsw.js'></script>
 <script>
-    document.querySelector('#home').addEventListener('mousedown', logMouseButton);
-    document.querySelector('#create').addEventListener('mousedown', logMouseButton);
+    document.querySelector('#home-ref').addEventListener('mousedown', logMouseButton);
+    document.querySelector('#create-ref').addEventListener('mousedown', logMouseButton);
 
     function logMouseButton(e) {   
         if (typeof e === 'object') {
