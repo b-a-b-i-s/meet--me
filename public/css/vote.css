@@ -1,0 +1,52 @@
+.h2-vote{
+    color: orangered;
+    font-size: 30px;
+}
+
+td{
+    text-align:center;
+}
+
+.meetinghours{
+    font-size:22px;
+    background-color: rgb(185, 185, 185);
+    height:50px;
+}
+
+.meetinghours p{
+    font-size:16px;
+}
+
+.meetinghours:hover{
+    font-size:22px;
+    background-color: rgb(218, 216, 216);
+    cursor: pointer;
+}
+
+.meeting-table{
+    margin:auto;
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.chosen-vote{
+    background-color: rgb(100, 255, 100);
+}
+
+.chosen-vote:hover{
+    background-color: rgb(59, 199, 59);
+}
+
+.top-vote{
+    width: 90%;
+    margin:auto;
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+#submit-votes-btn {
+    grid-column: 1/2;
+    grid-row: 3/4;
+    margin: 2em auto 1.5em auto;
+    display: none;
+}

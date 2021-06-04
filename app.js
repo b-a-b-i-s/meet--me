@@ -3,10 +3,15 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const logger = require('morgan');
 const createError = require('http-errors');
+const favicon = require('serve-favicon')
 
 const app = express()
 
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
 app.use(logger('dev'));
 app.engine('hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
