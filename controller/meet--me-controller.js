@@ -3,9 +3,9 @@
 const model = require('../model/meet--me-model-heroku-pg-db.js');
 
 require('dotenv').config();
-const port = process.env.SECRET || '3000';
-const host = "localhost:"+port
-// const host = 'meet--me.herokuapp.com'
+// const port = process.env.PORT || '3000';
+// const host = "localhost:"+port
+const host = 'meet--me.herokuapp.com'
 
 exports.addMeeting = (req, res) => {
     model.addMeeting(req.body, (err, url) => {
