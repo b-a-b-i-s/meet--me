@@ -3,7 +3,7 @@
     font-size: 30px;
 }
 
-td{
+#real-table > tbody > tr > td, #real-table > thead > tr > td{
     text-align:center;
 }
 
@@ -24,9 +24,20 @@ td{
 }
 
 .meeting-table{
+    position:relative;
     margin:auto;
     grid-column: 1/2;
     grid-row: 2/3;
+}
+
+#table-scroll {
+    /* height:150px; */
+    overflow-y:auto;  
+    /* margin-top:20px; */
+}
+
+#real-table {
+    width: 100%;
 }
 
 .chosen-vote{
@@ -42,6 +53,7 @@ td{
     margin:auto;
     grid-column: 1/2;
     grid-row: 1/2;
+    display: none;
 }
 
 #submit-votes-btn {
@@ -50,3 +62,52 @@ td{
     margin: 2em auto 1.5em auto;
     display: none;
 }
+
+
+.top-vote input{
+    width: 15em;
+    padding: 0.5em;
+    margin: 1em 0 2em 0;
+    border: 2px solid #eb6e347a;
+    border-radius: 8px;
+    transition: all 0.1s ease;
+}
+
+.top-vote input:hover {
+    border: 2px solid #EB6E34;
+    /* box-shadow: 1px 1px #EB6E34; */
+}
+
+/* .top-vote input::placeholder {
+    color: #31170bd2;
+    transition: none;
+} */
+
+.top-vote input:focus {
+    border: 2px solid #EB6E34;
+    outline: none; 
+    box-shadow: 0 0 0 2px #EB6E34;
+    border-radius: 8px;
+}
+
+/* table {
+    table-layout:fixed;
+} */
+
+
+#real-table > tbody > tr > td > span {
+    margin-top: 12px;
+}
+
+#real-table > tbody > tr > td > p {
+    margin-bottom: 4px;
+}
+
+
+/* .previously-selected {
+    background-color: darkgreen;
+} */
+
+/* .top-vote input:focus::placeholder {
+    color: rgba(0, 0, 0, 0.486);
+} */

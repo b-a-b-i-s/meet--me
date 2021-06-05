@@ -3,8 +3,8 @@
 const model = require('../model/meet--me-model-heroku-pg-db.js');
 
 require('dotenv').config();
-const port = process.env.PORT || '3000';
-const host = process.env.PORT ? "localhost:"+port : 'meet--me.herokuapp.com'
+const port = process.env.SECRET || '3000';
+const host = "localhost:"+port
 // const host = 'meet--me.herokuapp.com'
 
 exports.addMeeting = (req, res) => {
@@ -22,7 +22,7 @@ exports.publish = (req, res) => {
         url:host+'/meeting/'+req.params.url,
         shorturl:'/meeting/'+req.params.url,
         loggedin:true,
-        partialContext: {name: 'Test username'}
+        partialContext: {name: req.session ? req.session.loggedUserId : 'test usr'}
         // name:req.session.userName
     })
 }
@@ -40,20 +40,36 @@ exports.renderVote = (req, res) => {
 
 
 exports.getDates = (req, res) => {
-    
-    model.getDates(req.params.url, (err, data, votes, meetingInfo) => {
+    let userId = req.session ? req.session.loggedUserId : 9
+    model.getDates(req.params.url, userId, (err, data, votes, meetingInfo, userName) => {
         if (err) {
             res.send(err);
         }
-        votes.forEach(el => {
-            if (el.UserIdVote != 9) el.UserIdVote = true//req.session.useid
-            else el.UserIdVote = false
-        });
+        if (votes) {
+            votes.forEach(el => {
+                if (el.UserIdVote === userId) el.UserIdVote = true//req.session.useid
+                else el.UserIdVote = false
+            });
+        }
         res.json( { 
             data:data,
             votes:votes,
-            meetingInfo : meetingInfo
+            meetingInfo : meetingInfo,
+            thisUserName : userName
         })
+    });
+}
+
+exports.addVotes = (req, res) => {
+    let userId = req.session ? req.session.loggedUserId : 9
+    
+    model.addVotes(req.params.url, req.body, userId, (err) => {
+        if (err) {
+            res.send(err);
+        }
+
+        res.writeHead(200, { 'Content-Type': 'text/plain' })
+        res.end('votes updated', 'utf-8')
     });
 }
 

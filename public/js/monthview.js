@@ -1547,11 +1547,11 @@ finalPublishBtn.onclick = () => {
     const dataToSend = {"name":name, "oneVote":oneVote, "description":description, "lista":lista};
 
     if ((lista.length != 0) && (name != '')) {
-         // demo()
+        // demo()
 
 
-         fetch('/add-meeting', {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        fetch('/add-meeting', {
+            method: 'POST',
             // mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             // credentials: 'same-origin', // include, *same-origin, omit

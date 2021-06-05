@@ -4,17 +4,25 @@
         <h2 class="h2-vote"></h2>
         <h3></h3>
         <h4></h4>
+        <label for="name"><strong>Name : </strong></label>
+        <input type="text" name="name" id="name">
     </div>
 
+
     {{!-- <form class="form"> --}}
+    <div class='meeting-table' style='width: 1000px;'>
+        <div id="table-scroll">
+            <table id='real-table'>
+                <thead>
+                    <tr class='date-row'></tr>
+                </thead>
+                <tbody class='all-dates-rows'>
+                </tbody>
+            </table>
+        </div>
         
-    <table class='meeting-table' style='width: 1000px;'>
-        <thead>
-            <tr class='date-row'></tr>
-        </thead>
-        <tbody class='all-dates-rows'>
-        </tbody>
-    </table>
+    </div>
+    
     {{!-- </form> --}}
     <button id="submit-votes-btn" class="submit-options-btn">Vote Selected</button>
 </div>
