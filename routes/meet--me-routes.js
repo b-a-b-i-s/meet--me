@@ -7,6 +7,8 @@ const meetMeController = require('../controller/meet--me-controller');
 
 router.get('/meeting/get-data/:url',  meetMeController.getDates)
 
+router.post('/meeting/:url',  meetMeController.addVotes)
+
 router.get('/meeting/:url',  meetMeController.renderVote)
 
 router.get('/mymeetings', (req, res) => res.render('mymeetings'));

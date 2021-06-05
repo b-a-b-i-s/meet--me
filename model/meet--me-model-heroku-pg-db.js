@@ -16,7 +16,7 @@ function makeid(length) {
 function getMeetingIdFromUrl(url, callback) {
 
 	const query = {
-		text: `SELECT "MeetingId" FROM public."Meeting" WHERE "MeetingUrl" = $1`,
+		text: `SELECT "MeetingId" FROM public."Meeting" WHERE "MeetingUrl" = $1;`,
 		values: [url],
 	}
 
@@ -31,11 +31,92 @@ function getMeetingIdFromUrl(url, callback) {
 	})
 }
 
+function getNamesById(userIds, callback) {
+
+	// const userIdToName;
+
+	const query = {
+		text: `SELECT * FROM public."User" WHERE "UserId" = ANY($1::int[]);`,
+		values: [userIds],
+	}
+	sql.query(query)
+		.then(res => {
+			// console.log(res)
+			const IdsToSignedTempIds = {};
+			// const TempIdToUserId = {}
+			// const SignedIdToUserId = {}
+			res.rows.forEach(el => {
+				if (el.TempId) IdsToSignedTempIds[el.UserId] = {TempId:el.TempId};
+				else IdsToSignedTempIds[el.UserId] = {SignedUserId:el.SignedUserId}
+			})
+			getNames(IdsToSignedTempIds);
+		})
+		.catch(e => {
+			console.log(e)
+			callback(e)
+		})
+
+	function getNames(IdsToSignedTempIds){
+		// const TempIds = IdsToSignedTempIds.filter(el => el.TempId)
+		const promiseList = [];
+
+		for (const [id, value] of Object.entries(IdsToSignedTempIds)) {
+			let query;
+			if (value.SignedUserId) {
+				query = {
+					text: `SELECT * FROM public."Signed User" WHERE "SignedUserId" = $1;`,
+					values: [value.SignedUserId],
+				}
+			}
+			else {
+				query = {
+					text: `SELECT * FROM public."Temporary User" WHERE "TempId" = $1;`,
+					values: [value.TempId],
+				}
+			}
+			promiseList.push(
+				sql.query(query)
+			)
+		}
+		Promise.all(promiseList)
+			.then(res => {
+				// console.log(res)
+				const TempNames = {};
+				const SignedNames = {}
+				res.forEach(eachRes => {
+					let el = eachRes.rows[0];
+					if (el.SignedUserId) {
+						SignedNames[el.SignedUserId] = el.UserName
+						
+					}
+					else {
+						TempNames[el.TempId] = el.TempName
+					}
+				})
+				for (const [id, value] of Object.entries(IdsToSignedTempIds)) {
+				
+					if (value.SignedUserId) {
+						value.name = SignedNames[value.SignedUserId];
+					}
+					else {
+						value.name = TempNames[value.TempId];
+					}
+				}
+				callback(null, IdsToSignedTempIds)
+			})
+			.catch(e => {
+				console.log(e)
+				callback(e)
+			})
+	}
+
+}
+
 exports.addMeeting = function (newData, callback) {
- 	console.log(newData)
+ 	// console.log('addong to db', newData)
 
 	let url = makeid(6);
-	console.log(url)
+	console.log('url', url)
 
 	getMeetingIdFromUrl(url, callbackFunc);
 
@@ -93,13 +174,7 @@ exports.addMeeting = function (newData, callback) {
 				values: [MeetingId, index+1],
 				}
 			promiseList.push(
-				sql.query(query, (err, result) => {
-					if (err)
-						callback(err.stack, null);
-					else {
-						console.log(result)
-					}
-				})
+				sql.query(query)
 			)
 		});
 		Promise.all(promiseList)
@@ -110,7 +185,7 @@ exports.addMeeting = function (newData, callback) {
 }
 
 
-exports.getDates = function (url, callback) {
+exports.getDates = function (url, userId, callback) {
 	// console.log(url)
 
 	// let meetingId;
@@ -130,7 +205,7 @@ exports.getDates = function (url, callback) {
 	.then( (meetingId) => {
 		return new Promise((resolve) => {
 			const query = {
-				text: `SELECT * FROM public."Date" WHERE "MeetingId" = $1`,
+				text: `SELECT * FROM public."Date" WHERE "MeetingId" = $1;`,
 				values: [meetingId],
 			}
 		
@@ -167,7 +242,7 @@ exports.getDates = function (url, callback) {
 	.then( (meetingId) => {
 		return new Promise((resolve) => {
 			const query = {
-				text: `SELECT * FROM public."Meeting" WHERE "MeetingId" = $1`,
+				text: `SELECT * FROM public."Meeting" WHERE "MeetingId" = $1;`,
 				values: [meetingId],
 			}
 		
@@ -194,7 +269,7 @@ exports.getDates = function (url, callback) {
 	.then( (MeetingCreatorId) => {
 		return new Promise((resolve) => {
 			const query = {
-				text: `SELECT "SignedUserId" FROM public."User" WHERE "UserId" = $1`,
+				text: `SELECT "SignedUserId" FROM public."User" WHERE "UserId" = $1;`,
 				values: [MeetingCreatorId],
 			}
 		
@@ -214,7 +289,7 @@ exports.getDates = function (url, callback) {
 	.then( (CreatorId) => {
 		return new Promise((resolve) => {
 			const query = {
-				text: `SELECT "UserName" FROM public."Signed User" WHERE "SignedUserId" = $1`,
+				text: `SELECT "UserName" FROM public."Signed User" WHERE "SignedUserId" = $1;`,
 				values: [CreatorId],
 			}
 		
@@ -234,7 +309,7 @@ exports.getDates = function (url, callback) {
 	})
 	.then( () => {
 		const query = {
-			text: `SELECT * FROM public."Vote" WHERE "MeetingId" = $1`,
+			text: `SELECT * FROM public."Vote" WHERE "MeetingId" = $1;`,
 			values: [meetingId],
 		}
 	
@@ -244,33 +319,100 @@ exports.getDates = function (url, callback) {
 				callback(err.stack)
 			}
 			else {
-				// res()
-				const votes = [];
 
+				const userIds = []
 				res.rows.forEach((el) => {
-					votes.push({
-						UserIdVote : el.UserIdVote,
-						VoteDateId : el.VoteDateId,
-						Name : el.Name
-					})
+					userIds.push(el.UserIdVote)
 				})
-				callback(null, data, votes, meetingInfo)
+				userIds.push(userId)
+				let uniqueIds = [...new Set(userIds)];
+				let userIdToName;
+
+				getNamesById(uniqueIds, (err, result) => {
+					if (err) {
+						callback(err);
+					}
+					userIdToName = result
+					const votes = [];
+
+					res.rows.forEach((el) => {
+						votes.push({
+							UserIdVote : el.UserIdVote,
+							VoteDateId : el.VoteDateId,
+							Name : userIdToName[el.UserIdVote].name
+						})
+					})
+					let userName = userIdToName[userId].name
+					callback(null, data, votes, meetingInfo, userName)
+				})
 			}
 		})
 	})
-
-	
-	
-  	
+	.catch(e => {
+		console.error(e)
+		callback(e)
+	})
 
 }
 
 
-exports.submitVotes = function (newData, callback) {
-	console.log(newData)
+exports.addVotes = function (url, votes, userId, callback) {
+	// console.log(newData)
 
-	let url = makeid(6)
+	let meetingId;
 
-	callback(null, url)
+	// const promiseList;
+
+	new Promise( (resolve) => {
+		getMeetingIdFromUrl(url, (err, result) => {
+			if (err) {
+				callback(err);
+			}
+			meetingId = result.rows[0].MeetingId
+			resolve()
+		})
+	})
+	.then( () => {
+		return new Promise((resolve) => {
+			const query = {
+				text: `DELETE FROM public."Vote" WHERE "MeetingId" = $1 AND "UserIdVote" = $2;`,
+				values: [meetingId,userId],
+			}
+		
+			sql.query(query, (err, res) => {
+				if (err) {
+					console.log(err.stack)
+					callback(err.stack)
+				}
+				else {
+					resolve()
+				}
+			})
+		})
+	})
+	.then( () => {
+		const promiseList = []
+		votes.forEach(el => {
+			const query = {
+				text: `INSERT INTO public."Vote" \
+				("MeetingId", "UserIdVote", "VoteDateId") VALUES
+				($1, $2, $3);`,
+				values: [meetingId, userId, el],
+				}
+			promiseList.push(
+				sql.query(query)
+			)
+		})
+		Promise.all(promiseList)
+			.then(callback(null))
+			.catch(e => {
+				console.error(e)
+				callback(e)
+			})
+	})
+	.catch(e => {
+		console.error(e)
+		callback(e)
+	})
+
 }
-
