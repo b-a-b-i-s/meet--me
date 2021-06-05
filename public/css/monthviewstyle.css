@@ -3,6 +3,11 @@ body, html {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     background-color: white;
+    overflow: auto;
+}
+
+body {
+    background-color: ghostwhite;
 }
 
 #all-container {
@@ -250,6 +255,7 @@ body, html {
     /* left: 5%; */
     z-index: 10;
     box-shadow: 2px 8px 15px #eb6e34;
+    background-color: white;
 }
 
 .month {
