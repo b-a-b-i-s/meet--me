@@ -4,9 +4,16 @@ const model = require('../model/meet--me-model-heroku-pg-db.js');
 const bcrypt = require('bcrypt')
 
 require('dotenv').config();
-const port = process.env.PORT || '3000';
-const host = "localhost:"+port
-// const host = 'meet--me.herokuapp.com'
+let host;
+
+// if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+    const port = process.env.PORT || '3000';
+    host = "localhost:"+port;
+// }
+// else {
+    // host = 'meet--me.herokuapp.com'
+// }
+// const 
 
 exports.addMeeting = (req, res) => {
     model.addMeeting(req.body, req.session.loggedUserId, (err, url) => {
@@ -19,14 +26,18 @@ exports.addMeeting = (req, res) => {
 }
 
 exports.publish = (req, res) => {
+    console.log("🚀 ~ file: meet--me-controller.js ~ line 39 ~ req.headers.host", req.connection.remoteAddress)
+    console.log("🚀 ~ file: meet--me-controller.js ~ line 40 ~ req.headers.host", req.headers.host)
+    
     res.render('publish', { 
-        url:host+'/meeting/'+req.params.url,
+        url:req.headers.host+'/meeting/'+req.params.url,
         shorturl:'/meeting/'+req.params.url,
         loggedin:true,
         partialContext: {name: req.session.loggedUserName}
         // name:req.session.userName
     })
 }
+    
 
 exports.renderVote = (req, res) => {
     if (!req.session.userId) {

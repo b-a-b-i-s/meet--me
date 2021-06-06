@@ -1,6 +1,6 @@
 let data;
 let initialVotes;
-window.onload = () => {
+window.addEventListener("load", () => {
     
     fetch('/meeting/get-data/'+window.location.href.slice(-6), {
         method: 'GET', 
@@ -25,7 +25,7 @@ window.onload = () => {
             thisUserName = jsonData.thisUserName
             executeAll()
         })
-}
+})
 
 function executeAll() {
     let finalOption;
@@ -169,11 +169,13 @@ function executeAll() {
             document.querySelectorAll('.chosen-vote').forEach(el => votes.push(Number(el.dataset.dateId)))
             const name = document.querySelector('#name').value
             if ((!name) || (name == '')){
-                alert('Enter a name')
+                document.querySelector('#alert-modal').style.display = 'block'
+                document.querySelector('#alert-message').textContent = 'Enter a name'
                 return;
             }
             else if (votes.length === 0) {
-                alert('Select at least an option')
+                document.querySelector('#alert-modal').style.display = 'block'
+                document.querySelector('#alert-message').textContent = 'Select at least an option'
                 return;
             }
 
@@ -238,7 +240,8 @@ function executeAll() {
                     document.querySelectorAll('.chosen-vote').forEach(el => votes.push(Number(el.dataset.dateId)))
                     const name = document.querySelectorAll('#name').value
                     if (votes.length != 1){
-                        alert('Choose at least an option')
+                        document.querySelector('#alert-modal').style.display = 'block'
+                        document.querySelector('#alert-message').textContent = 'Choose at least an option'
                         return;
                     }
     
