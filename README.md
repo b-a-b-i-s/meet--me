@@ -1,7 +1,7 @@
 # meet-me (Web Programming Project)
 
 
-Διαθέσιμο στο heroku [εδώ](meet--me.herokuapp.com)
+Διαθέσιμο στο heroku [εδώ](https://meet--me.herokuapp.com/)
 
 Για να εγκατασταθεί και να μπορεί να χρησιμοποιηθεί το πρόγραμμα πρέπει πρώτα να εκτελεστούν τα ακόλουθα βήματα:
 
