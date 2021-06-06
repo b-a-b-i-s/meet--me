@@ -1,6 +1,6 @@
 <nav>
     <button class="menu-nav-button" id='home-ref' data-path='/'>Home</button>
-    <button class="menu-nav-button" id='create-ref' data-path='/monthly_calendar'>Create a MeetMe</button>
+    <button class="menu-nav-button" id='create-ref' data-path='/create-meetme'>Create a MeetMe</button>
     {{!-- <button class="menu-nav-button" onclick="location.href='/mymeetings';">My meetings</button> --}}
     <div class="right">
       <button class="menu-nav-button" id="signinbtn">Sign In</button>
@@ -8,8 +8,8 @@
     </div>
 </nav>
     <div id="signinmodal" class="modal-sign">
-      
-      <form class="signin modal-sign-content" method="POST" action="#">
+  
+      <form class="signin modal-sign-content" method="POST" action="/login">
         <span class="close-sign">&times;</span>
         <fieldset>
             <i class="fas fa-sign-in-alt fa-4x" id="sign-in-icon"></i>
@@ -43,7 +43,7 @@
   
 <div id="signupmodal" class="modal-sign">
       
-      <form  class="signup modal-sign-content modal-sign-content-up" method="POST" action="#">
+      <form  name="signupform" class="signup modal-sign-content modal-sign-content-up" method="POST" onsubmit="return validateForm()" action="/signup">
         <span class="close-sign">&times;</span>
         <fieldset>
             <i class="fas fa-user-plus fa-4x" id="user-plus-icon"></i>

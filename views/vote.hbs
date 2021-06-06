@@ -4,8 +4,10 @@
         <h2 class="h2-vote"></h2>
         <h3></h3>
         <h4></h4>
-        <label for="name"><strong>Name : </strong></label>
-        <input type="text" name="name" id="name">
+        {{#if open}}
+            <label for="name"><strong>Name : </strong></label>
+            <input type="text" name="name" id="name" value="{{name}}"">
+        {{/if}}
     </div>
 
 
@@ -24,7 +26,17 @@
     </div>
     
     {{!-- </form> --}}
-    <button id="submit-votes-btn" class="submit-options-btn">Vote Selected</button>
+    {{#if open}}
+    <div class="button-container">
+        <button id="submit-votes-btn" class="submit-options-btn">Vote Selected</button>
+        {{#if isCreator}}
+            <button id="choose-final" class="submit-options-btn">Choose Final Option</button>
+            <button id="confirm" class="submit-options-btn choose-finals" style="display: none;">Confirm</button>
+            <button id="cancel" class="submit-options-btn choose-finals" style="display: none;">Cancel</button>
+        {{/if}} 
+    </div>
+    {{/if}}
+    
 </div>
 
 

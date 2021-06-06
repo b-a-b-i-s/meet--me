@@ -1,3 +1,4 @@
+
 'use strict';
 
 const express = require('express');
@@ -5,31 +6,36 @@ const router = express.Router({caseSensitive:true});
 
 const meetMeController = require('../controller/meet--me-controller');
 
+//fetch
 router.get('/meeting/get-data/:url',  meetMeController.getDates)
-
-router.post('/meeting/:url',  meetMeController.addVotes)
+router.post('/meeting/choose-fianl-option/:url',meetMeController.checkAuthenticated, meetMeController.chooseFinalOption)
+router.post('/meeting/add-votes/:url/:name',  meetMeController.addVotes)
+router.post('/add-meeting',meetMeController.checkAuthenticated, meetMeController.addMeeting);
 
 router.get('/meeting/:url',  meetMeController.renderVote)
 
-router.get('/mymeetings', (req, res) => res.render('mymeetings'));
+router.get('/create-meetme',  meetMeController.checkAuthenticated, (req, res) => res.render('create_meetme',{partialContext: {name:req.session.loggedUserName}, loggedin:true}));
 
-router.get('/monthly_calendar', (req, res) => res.render('monthly_calendar'));
+router.all('/publish/:url',meetMeController.checkAuthenticated, meetMeController.publish);
 
-// router.get('/monthly_calendar', meetMeController.monthView);
+router.get('/loggedin',meetMeController.checkAuthenticated, (req, res) => res.render('index', {partialContext: {name:req.session.loggedUserName}, loggedin:true}))
 
-router.post('/add-meeting', meetMeController.addMeeting);
+router.get('/mymeetings', meetMeController.checkAuthenticated, meetMeController.showMyMeetings);
 
-router.all('/publish/:url', meetMeController.publish);
-
-router.get('/loggedin', (req, res) => res.render('index', {partialContext: {name:"John Doe"}, loggedin:true}))
-
-router.get('/', (req, res) => res.render('index'))
+router.get('/',meetMeController.checkAuthenticated, (req, res) => res.render('index'))
 
 
+//log in-------------------------------------------------------------------------------------------------
+router.post('/login', meetMeController.doLogin);
+router.post('/signup', meetMeController.doRegister);
+router.get('/login', (req, res) => res.render('index', {needtolog:true}));
+router.get('/loggedin', (req, res) => res.render('index', {partialContext: {name:req.session.loggedUserName}, loggedin:true}))
+router.get('/logout', meetMeController.doLogout)
+router.get('/afterregister',(req, res) => res.render('index', {aftersignup:true}))
+router.get('/failed',(req, res) => res.render('index', { failedloggin: true }))
 
 
 // router.all('*', (req, res) => res.render('not_found', {layout: '404'}))
-
 
 
 module.exports = router;

@@ -1,10 +1,10 @@
 <nav>
     <button class="menu-nav-button" id='home-ref' data-path='/'>Home</button>
-    <button class="menu-nav-button" id='create-ref' data-path='/monthly_calendar'>Create a MeetMe</button>
+    <button class="menu-nav-button" id='create-ref' data-path='/create-meetme'>Create a MeetMe</button>
     <button class="menu-nav-button" id='mymeetings-ref' data-path='/mymeetings';>My meetings</button>
     <div class="right">
         <button class="menu-nav-button" id="name">{{name}}</button>
-        <button class="menu-nav-button" id="logout">Logout</button>
+        <button class="menu-nav-button" id="logout" data-path='/logout'>Logout</button>
     </div>
 </nav>
 
@@ -12,6 +12,7 @@
     document.querySelector('#home-ref').addEventListener('mousedown', logMouseButton);
     document.querySelector('#create-ref').addEventListener('mousedown', logMouseButton);
     document.querySelector('#mymeetings-ref').addEventListener('mousedown', logMouseButton);
+    document.querySelector('#logout').addEventListener('mousedown', logMouseButton);
 
     function logMouseButton(e) {   
         if (typeof e === 'object') {

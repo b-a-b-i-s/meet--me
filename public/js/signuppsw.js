@@ -22,3 +22,13 @@ togglePassword2.addEventListener('click', function (e) {
   this.classList.toggle('fa-eye-slash');
   togglePassword.classList.toggle('fa-eye-slash');
 });
+
+function validateForm() {
+  var pass1 = document.forms["signupform"]["UserPass"].value;
+  var pass2 = document.forms["signupform"]["UserPass2"].value;
+  
+  if (pass1 !== pass2) {
+    alert("Passwords do not match!");
+    return false;
+  }
+}

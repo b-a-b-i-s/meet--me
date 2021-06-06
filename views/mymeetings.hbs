@@ -1,74 +1,42 @@
 ﻿
-    <div class="wrappermeetings">
-        <h2 class="subt">Your created and voted meetings are:</h2>
+<div class="wrappermeetings">
+    <h2 class="subt">Your created and voted meetings are:</h2>
+    {{#each meeting}}
         <div class="specmeet">
             <div class="meetinfo">
-                <h3 class="meettitle"><a href="#">I am the title</a></h3>
+                <h3 class="meettitle"><a href="/meeting/{{this.meetingUrl}}">{{this.meetingTitle}}</a></h3>
                 <div class="infogrid">
                     <div class="infocat">
                         Participants:
                     </div>
                     <div class="infoans">
-                        19
+                        {{this.numberOfParticipants}}
                     </div>
-                    <div class="infocat">
-                        Current Suitable Date:
-                    </div>
-                    <div class="infoans">
-                        18:35 18/07/2021
-                    </div>
-                    <div class="infocat">
-                        Creator:
-                    </div>
-                    <div class="infoans">
-                        John Doe
-                    </div>
-                </div>
-            </div>
-            <div class="status active">
-                <h3 class="meettitle">Active</h3>
-            </div>
-
-        </div>
-        <div class="specmeet">
-            <div class="meetinfo">
-                <h3 class="meettitle"><a href="#">I am the title</a></h3>
-                <div class="infogrid">
-                    <div class="infocat">
-                        Participants:
-                    </div>
-                    <div class="infoans">
-                        19
-                    </div>
-                    <div class="infocat">
-                        Chosen Date:
-                    </div>
-                    <div class="infoans">
-                        18:35 18/07/2021
-                    </div>
+                    {{#if this.closed}}
+                        <div class="infocat">
+                            Chosen Date:
+                        </div>
+                        <div class="infoans">
+                            {{this.finalDate}}
+                        </div>
+                    {{/if}}
                     <div class="infocat">
                         Creator:
                     </div>
                     <div class="infoans">
-                        John Doe
+                        {{this.name}}
                     </div>
                 </div>
             </div>
+            {{#if this.closed}}
             <div class="status closed">
                 <h3 class="meettitle">Closed</h3>
             </div>
-
+            {{else}}
+            <div class="status active">
+                <h3 class="meettitle">Active</h3>
+            </div>
+            {{/if}}
         </div>
-
-    </div>
-
-
-    
-
-{{!-- 
-    <script src="js/modal.js"></script>
-    <script src='js/signinpsw.js'></script>
-    <script src='js/signuppsw.js'></script> --}}
-
-</body>
-</html>
+    {{/each}}
+</div>
