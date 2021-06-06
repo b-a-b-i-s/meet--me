@@ -167,7 +167,7 @@ function executeAll() {
 
             const votes = []
             document.querySelectorAll('.chosen-vote').forEach(el => votes.push(Number(el.dataset.dateId)))
-            const name = document.querySelector('#name').value
+            const name = document.querySelector('#new-name').value
             if ((!name) || (name == '')){
                 document.querySelector('#alert-modal').style.display = 'block'
                 document.querySelector('#alert-message').textContent = 'Enter a name'
@@ -238,7 +238,7 @@ function executeAll() {
                 confirmBtn.onclick = () => {
                     const votes = []
                     document.querySelectorAll('.chosen-vote').forEach(el => votes.push(Number(el.dataset.dateId)))
-                    const name = document.querySelectorAll('#name').value
+                    // const name = document.querySelectorAll('#name').value
                     if (votes.length != 1){
                         document.querySelector('#alert-modal').style.display = 'block'
                         document.querySelector('#alert-message').textContent = 'Choose at least an option'
