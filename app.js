@@ -7,20 +7,37 @@ const session = require('express-session');
 
 const app = express()
 
+const MemoryStore = require('memorystore')(session)
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(logger('dev'));
 app.engine('hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+app.use(session({
+  name: 'meetme-session',
+  secret: process.env.SESSION_SECRET, // κλειδί για κρυπτογράφηση του cookie
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      maxAge: 24 * 60 * 60*1000,
+  },
+  store: new MemoryStore({ checkPeriod: 86400000 })
+}));
+
+app.use((req, res, next) => {
+  res.locals.userId = req.session.loggedUserId;
+  next();
+})
 
 //Διαδρομές - Routse
 const routes = require('./routes/meet--me-routes');
 app.use('/', routes);
-
-
 
 
 app.use(function(req, res, next) {

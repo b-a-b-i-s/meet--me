@@ -3,6 +3,7 @@
 const sql = require('./db.heroku-pg.js');
 const bcrypt = require('bcrypt')
 
+
 function makeid(length) {
     var result           = [];
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -112,10 +113,11 @@ function getNamesById(userIds, callback) {
 
 }
 
-exports.addMeeting = function (newData, callback) {
+exports.addMeeting = function (newData, loggedUserId, callback) {
  	// console.log('addong to db', newData)
 
 	let url = makeid(6);
+	let userId;
 	console.log('url', url)
 
 	getMeetingIdFromUrl(url, callbackFunc);
@@ -134,14 +136,29 @@ exports.addMeeting = function (newData, callback) {
 		}
 	} 
 
+	// function findUserId() {
+	// 	const query = {
+	// 		text: `SELECT "UserId" FROM public."User" WHERE "SignedUserId" = ($1);`,
+	// 		values: [loggedUserId],
+	// 	}
+	
+	// 	sql.query(query, (err, res) => {
+	// 		if (err)
+	// 			callback(err.stack, null);
+	// 		else {
+	// 			userId = res.rows[0].UserId
+	// 			createMeeting();
+	// 		}
+	// 	})
+	// }
+
 	function createMeeting(){
-		let userId = 1
 		const query = {
 			text: `INSERT INTO public."Meeting" \
 			("MeetingState", "MeetingTitle", "MeetingDescription", "MeetingDateCreated", \
 			"MeetingSingleVote", "MeetingUrl","MeetingCreator") \
 			VALUES	('open', $1, $2, CURRENT_TIMESTAMP, $3, $4, $5) RETURNING "MeetingId";`,
-			values: [newData.name, newData.description, newData.oneVote, url, userId],
+			values: [newData.name, newData.description, newData.oneVote, url, loggedUserId],
 		}
 	
 		sql.query(query, (err, result) => {
@@ -185,8 +202,10 @@ exports.addMeeting = function (newData, callback) {
 }
 
 
-exports.getDates = function (url, userId, callback) {
-	// console.log(url)
+exports.getDates = function (req, callback) {
+	// console.log(url)url, userId
+	const url = req.params.url 
+	const userId = req.session.userId
 
 	// let meetingId;
 	const data = [];
@@ -266,26 +285,26 @@ exports.getDates = function (url, userId, callback) {
 			})
 		})
 	})
-	.then( (MeetingCreatorId) => {
-		return new Promise((resolve) => {
-			const query = {
-				text: `SELECT "SignedUserId" FROM public."User" WHERE "UserId" = $1;`,
-				values: [MeetingCreatorId],
-			}
+	// .then( (MeetingCreatorId) => {
+	// 	return new Promise((resolve) => {
+	// 		const query = {
+	// 			text: `SELECT "SignedUserId" FROM public."User" WHERE "UserId" = $1;`,
+	// 			values: [MeetingCreatorId],
+	// 		}
 		
-			sql.query(query, (err, res) => {
-				if (err) {
-					console.log(err.stack)
-					callback(err.stack)
-				}
-				else {
-					// res()
-					resolve(res.rows[0].SignedUserId)
-					// callback(null, data, votes)
-				}
-			})
-		})
-	})
+	// 		sql.query(query, (err, res) => {
+	// 			if (err) {
+	// 				console.log(err.stack)
+	// 				callback(err.stack)
+	// 			}
+	// 			else {
+	// 				// res()
+	// 				resolve(res.rows[0].SignedUserId)
+	// 				// callback(null, data, votes)
+	// 			}
+	// 		})
+	// 	})
+	// })
 	.then( (CreatorId) => {
 		return new Promise((resolve) => {
 			const query = {
@@ -355,13 +374,14 @@ exports.getDates = function (url, userId, callback) {
 
 }
 
-
-exports.addVotes = function (url, votes, userId, callback) {
+exports.addVotes = function (req, callback) {
+	const url = req.params.url;
+	const votes = req.body;
+	const name = req.params.name;
+	const userId = req.session.userId;
 	// console.log(newData)
 
 	let meetingId;
-
-	// const promiseList;
 
 	new Promise( (resolve) => {
 		getMeetingIdFromUrl(url, (err, result) => {
@@ -370,6 +390,57 @@ exports.addVotes = function (url, votes, userId, callback) {
 			}
 			meetingId = result.rows[0].MeetingId
 			resolve()
+		})
+	})
+	.then( () => {
+		return new Promise((resolve) => {
+			let query;
+			if (req.session.loggedUserName) {
+				query = {
+					text: `UPDATE "Signed User" \
+					SET "UserName" = $1 \
+					WHERE "SignedUserId" = $2;`,
+					values: [name, req.session.loggedUserId],
+				}
+			}
+			else {
+				query = {
+					text: `UPDATE "Temporary User" \
+					SET "TempName" = $1 \
+					WHERE "TempId" = $2;`,
+					values: [name, req.session.tempUserId],
+				}
+			}
+			sql.query(query, (err, res) => {
+				if (err) {
+					console.log(err.stack)
+					callback(err.stack)
+				}
+				else {
+					resolve()
+					// callback(null, data, votes)
+				}
+			})
+		})
+	})
+	.then( () => {
+		return new Promise((resolve) => {
+			const query = {
+				text: `SELECT "MeetingSingleVote" FROM public."Meeting" WHERE "MeetingId" = $1;`,
+				values: [meetingId],
+			}
+		
+			sql.query(query, (err, res) => {
+				if (err) {
+					console.log(err.stack)
+					callback(err.stack)
+				}
+				else {
+					if ((votes.length > 1) && (res.rows[0].MeetingSingleVote)) callback(null, true)
+					resolve()
+					// callback(null, data, votes)
+				}
+			})
 		})
 	})
 	.then( () => {
@@ -414,5 +485,382 @@ exports.addVotes = function (url, votes, userId, callback) {
 		console.error(e)
 		callback(e)
 	})
+
+}
+
+
+
+exports.checkIfClosedAndIfUserIsCreator = function(req, callback) {
+	const url = req.params.url;
+	const loggedUserId = req.session.loggedUserId;
+	
+	const query = {
+		text: `SELECT * FROM public."Meeting" WHERE "MeetingUrl" = $1;`,
+		values: [url],
+	}
+
+	sql.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack)
+			callback(err.stack)
+		}
+		else {
+			const closed = res.rows[0].MeetingState != 'open';
+			const check = res.rows[0].MeetingCreator == loggedUserId;
+			callback(null, closed, check)
+		}
+	})
+
+}
+
+
+exports.chooseFinalOption = function(req, callback) {
+	
+	const url = req.params.url;
+
+	const dateId = req.body[0]
+
+	const query = {
+		text: `UPDATE "Meeting" \
+			SET "MeetingState" = $1 \
+			WHERE "MeetingUrl" = $2;`,
+		values: [`'${dateId}'`,url],
+	}
+
+	sql.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack)
+			callback(err.stack)
+		}
+		else {
+			callback(null)
+		}
+	})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//// LOGIN REGISTER ////
+
+
+function getUserNames(username, callback) {
+
+	const query = {
+		text: `SELECT * FROM "public"."Signed User" WHERE "UserEmail"=$1;`,
+		values: [username]
+	}
+
+	  sql.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack)
+			callback(err.stack)
+		}
+		else {
+			callback(null, res)
+
+		}
+	})
+}
+// Επιστρέφει τον χρήστη με όνομα 'username'
+exports.getUserByUsername = (username, callback) => {
+
+	getUserNames(username, callbackFunction);
+	
+	function callbackFunction(err, res) {
+		let user;
+		if (err) {
+			callback(err);
+		}
+		if (res.rowCount == 0){
+			console.log("No such user exists")
+			callback(null)
+		}
+		else {
+			user = { id: res.rows[0].SignedUserId, useremail: res.rows[0].UserEmail, username: res.rows[0].UserName, password: res.rows[0].UserPassword };
+			const query = {
+				text: `SELECT "UserId" FROM public."User" WHERE "SignedUserId"=$1;`,
+				values: [user.id]
+			}
+		
+			sql.query(query, (err, res) => {
+				if (err) {
+					console.log(err.stack)
+					callback(err.stack)
+				}
+				else {
+					user.userId = res.rows[0].UserId
+					callback(null, user)
+		
+				}
+			})
+		}
+		
+	} 
+
+}
+function addNewUser(userfullname, email, password, callback) {
+
+	const query = {
+		text: `INSERT INTO "public"."Signed User" ("UserName", "UserEmail", "UserPassword") VALUES
+		($1, $2, $3);`,
+		values: [userfullname, email, password]
+	}
+
+	  sql.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack)
+			callback(err.stack)
+		}
+		else {
+			callback(null, res)
+
+		}
+	})
+}
+exports.registerUser = function (username, email, password, callback) {
+    // ελέγχουμε αν υπάρχει χρήστης με αυτό το username
+    exports.getUserByUsername(email, async (err, user) => {
+        if (user != undefined) {
+            callback(null, null, { message: "Υπάρχει ήδη χρήστης με αυτό το όνομα" })
+        } else {
+            try {
+                const hashedPassword = await bcrypt.hash(password, 10);
+				addNewUser(username, email, hashedPassword, callbackFunction)
+				function callbackFunction(err, res) {
+					let user;
+					if (err) {
+						callback(err);
+					}
+					callback(null,res);
+				}
+
+            } catch (error) {
+                callback(error);
+            }
+        }
+    })
+}
+
+exports.addTempUser = function(req, callback) {
+
+	let user = {}
+
+	const query = {
+		text: `INSERT INTO public."Temporary User" ("TempName") 
+		VALUES('') RETURNING "TempId";`
+	}
+
+	  sql.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack)
+			callback(err.stack)
+		}
+		else {
+			user.id = res.rows[0].TempId;
+			user.tempName = '';
+			getId(res.rows[0].TempId)
+			
+		}
+	})
+
+	function getId(TempId) {
+		const query = {
+			text: `SELECT "UserId" FROM public."User" WHERE "TempId" = $1;`,
+			values: [TempId]
+		}
+	
+		  sql.query(query, (err, res) => {
+			if (err) {
+				console.log(err.stack)
+				callback(err.stack)
+			}
+			else {
+				user.userId = res.rows[0].UserId;
+				callback(null, user)
+			}
+		})
+	}
+}
+
+
+
+
+
+// function getUserId(signeduserid, callback) {
+
+// 	const query = {
+// 		text: `SELECT * FROM "public"."User" WHERE "SignedUserId"=$1;`,
+// 		values: [signeduserid]
+// 	}
+
+// 	  sql.query(query, (err, res) => {
+// 		if (err) {
+// 			console.log(err.stack)
+// 			callback(err.stack)
+// 		}
+// 		else {
+// 			callback(null, res)
+
+// 		}
+// 	})
+// }
+
+function getCreatedMeetings(signeduserid, callback) {
+
+	const query = {
+		text: `SELECT * FROM "public"."Meeting" WHERE "MeetingCreator"=$1;`,
+		values: [signeduserid]
+	}
+
+	  sql.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack)
+			callback(err.stack)
+		}
+		else {
+			callback(null, res)
+
+		}
+	})
+}
+
+function getnumofvotes(meetid, callback){
+	const query = {
+		text: `SELECT COUNT(DISTINCT "Vote"."UserIdVote") FROM "public"."Vote" WHERE "Vote"."MeetingId"=$1;`,
+		values: [meetid]
+	}
+
+	  sql.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack)
+			callback(err.stack)
+		}
+		else {
+			callback(null, res)
+
+		}
+	})
+}
+
+function getchosendate(meetid, dateid, callback){
+	const query = {
+		text: `SELECT "StartDate" FROM "Date" WHERE "MeetingId"=$1 AND "DateId"=$2;`,
+		values: [meetid, parseInt(dateid.substr(1,dateid.length),10)]
+	}
+
+	  sql.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack)
+			callback(err.stack)
+		}
+		else {
+			callback(null, res)
+
+		}
+	})
+}
+
+exports.showMyMeetings = function (req, callback) {
+	// console.log(req.session)
+    // console.log("🚀 ~ file: meet--me-model-heroku-pg-db.js ~ line 790 ~ req.session.loggedUserId", req.session.loggedUserId)
+
+	const userid = req.session.loggedUserId
+
+
+
+			let meetings =[];
+
+			getCreatedMeetings(userid, clbfc);
+
+			async function clbfc(err, res){
+				if(err){
+					callback(err)
+				}
+				else{
+					const promiseList = []
+					for(let i in res.rows){
+
+							console.log("asas",res.rows[i])
+							let numofparts;
+							promiseList.push ( new Promise((resolve, rej) =>{
+								
+								getnumofvotes(res.rows[i].MeetingId, callfunc)
+								function callfunc(err, rescounts){
+									if(err){
+										callback(err)
+									}
+									else{
+										numofparts = rescounts.rows[0].count;
+										if(res.rows[i].MeetingState!="open"){
+											getchosendate(res.rows[i].MeetingId, res.rows[i].MeetingState, callbackfuncdate);
+											function callbackfuncdate(errdate, resdate){
+												if(errdate){
+													callback(errdate)
+												}
+												else{
+													let chosendate = resdate.rows[0].StartDate
+													meetings.push({closed: true, meetingTitle: res.rows[i].MeetingTitle, meetingDescription: res.rows[i].MeetingDescription, meetingDateCreated: res.rows[i].MeetingDateCreated, meetingUrl: res.rows[i].MeetingUrl, numberOfParticipants: numofparts, finalDate: chosendate.toLocaleString("en-GB",{}).replace(',',''), name:req.session.loggedUserName})
+													resolve()
+													// callback(null,meetings)
+												}
+											}
+										}
+										else{
+											meetings.push({closed: false, meetingTitle: res.rows[i].MeetingTitle, meetingDescription: res.rows[i].MeetingDescription, meetingDateCreated: res.rows[i].MeetingDateCreated, meetingUrl: res.rows[i].MeetingUrl, numberOfParticipants: numofparts, name:req.session.loggedUserName})
+											resolve()
+											// callback(null,meetings)
+										}
+				
+									}
+		
+								}
+							}))
+							
+					}
+
+					Promise.all(promiseList)
+						.then( () => {
+							console.log('meetings', meetings)
+							callback(null,meetings)
+						})
+						.catch(e => {
+							console.log(e)
+							callback(e)
+						})
+			
+
+
+					
+					
+					
+
+				}
+			}
+		
+
+	
 
 }

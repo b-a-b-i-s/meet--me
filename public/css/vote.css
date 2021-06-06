@@ -38,6 +38,7 @@
 
 #real-table {
     width: 100%;
+    /* margin: auto; */
 }
 
 .chosen-vote{
@@ -45,6 +46,10 @@
 }
 
 .chosen-vote:hover{
+    background-color: rgb(59, 199, 59);
+}
+
+.final-option {
     background-color: rgb(59, 199, 59);
 }
 
@@ -56,11 +61,14 @@
     display: none;
 }
 
-#submit-votes-btn {
+.button-container {
+    display: none;
     grid-column: 1/2;
     grid-row: 3/4;
+}
+
+.button-container > button{
     margin: 2em auto 1.5em auto;
-    display: none;
 }
 
 
@@ -97,12 +105,13 @@
 
 #real-table > tbody > tr > td > span {
     margin-top: 12px;
+    display: block;
 }
 
 #real-table > tbody > tr > td > p {
     margin-bottom: 4px;
+    display: block;
 }
-
 
 /* .previously-selected {
     background-color: darkgreen;
