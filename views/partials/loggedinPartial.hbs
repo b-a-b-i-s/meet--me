@@ -1,0 +1,29 @@
+<nav>
+    <button class="menu-nav-button" id='home-ref' data-path='/'>Home</button>
+    <button class="menu-nav-button" id='create-ref' data-path='/create-meetme'>Create a MeetMe</button>
+    <button class="menu-nav-button" id='mymeetings-ref' data-path='/mymeetings';>My meetings</button>
+    <div class="right">
+        <button class="menu-nav-button" id="name">{{name}}</button>
+        <button class="menu-nav-button" id="logout" data-path='/logout'>Logout</button>
+    </div>
+</nav>
+
+<script>
+    document.querySelector('#home-ref').addEventListener('mousedown', logMouseButton);
+    document.querySelector('#create-ref').addEventListener('mousedown', logMouseButton);
+    document.querySelector('#mymeetings-ref').addEventListener('mousedown', logMouseButton);
+    document.querySelector('#logout').addEventListener('mousedown', logMouseButton);
+
+    function logMouseButton(e) {   
+        if (typeof e === 'object') {
+            switch (e.button) {
+            case 0:
+                location.href=e.target.dataset.path;
+                break;
+            case 1:
+                window.open(e.target.dataset.path,'_blank');
+                break;
+            }
+        }
+    }
+</script>

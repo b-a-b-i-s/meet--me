@@ -1,0 +1,79 @@
+body {
+    background-color: white;
+}
+
+.wrappermeetings{
+    width:1000px;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+h2.subt{
+    color: #eb6e34;
+    font-size: 2em;
+    margin: 18px;
+}
+
+.specmeet{
+    background-color: #dbdbdb;
+    width: 90%;
+    margin: auto;
+    height: 100px;
+    border-radius:10px;
+    margin-bottom:30px;
+}
+
+.meetinfo{
+    width:79%;
+    display:inline-block;
+    height: 100px;
+}
+
+.meettitle{
+    padding-left:20px;
+}
+
+.meettitle a{
+    color:black;
+}
+
+.status{
+    width:15%;
+    display:inline-block;
+    height: 100px;
+    float:right;
+    border-radius:0px 10px 10px 0px;
+}
+
+.status.active{
+    background-color:green;
+}
+
+.status.closed{
+    background-color:red;
+}
+
+.status h3{
+    color:white;
+    padding-left:40px;
+    padding-top:20px;
+}
+
+.infogrid{
+    display: grid;
+    margin:10px;
+    grid-template-columns: 110px 50px 120px 110px 80px 150px;
+}
+
+.infocat{
+    font-weight: 600;
+    padding-left:10px;
+    float:right;
+    display: inline-block;
+    width: auto;
+}
+
+.infoans{
+    float:left;
+    display: inline-block;
+}

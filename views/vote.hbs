@@ -1,0 +1,44 @@
+﻿<div style="display: grid;">
+
+    <div class="top-vote">
+        <h2 class="h2-vote"></h2>
+        <h3></h3>
+        <h4></h4>
+        {{#if open}}
+            <label for="name"><strong>Name : </strong></label>
+            <input type="text" name="name" id="name" value="{{name}}"">
+        {{/if}}
+    </div>
+
+
+    {{!-- <form class="form"> --}}
+    <div class='meeting-table' style='width: 1000px;'>
+        <div id="table-scroll">
+            <table id='real-table'>
+                <thead>
+                    <tr class='date-row'></tr>
+                </thead>
+                <tbody class='all-dates-rows'>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    
+    {{!-- </form> --}}
+    {{#if open}}
+    <div class="button-container">
+        <button id="submit-votes-btn" class="submit-options-btn">Vote Selected</button>
+        {{#if isCreator}}
+            <button id="choose-final" class="submit-options-btn">Choose Final Option</button>
+            <button id="confirm" class="submit-options-btn choose-finals" style="display: none;">Confirm</button>
+            <button id="cancel" class="submit-options-btn choose-finals" style="display: none;">Cancel</button>
+        {{/if}} 
+    </div>
+    {{/if}}
+    
+</div>
+
+
+
+<script src="/js/vote.js"></script>

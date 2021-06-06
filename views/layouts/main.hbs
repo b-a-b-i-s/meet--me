@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MeetMe</title>
+    <script src="https://kit.fontawesome.com/285af68c5a.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/signinstyle.css">
+    <link rel="stylesheet" href="/css/signupstyle.css">
+    <link rel="stylesheet" href="/css/publish.css">
+    <link rel="stylesheet" href="/css/mymeetings.css">
+    <link rel="stylesheet" href="/css/publish.css">
+    <link rel="stylesheet" href="/css/vote.css">
+
+    <link rel="stylesheet" href="/css/create.css">
+
+    <script src="https://kit.fontawesome.com/285af68c5a.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    {{#if loggedin}}
+    {{> loggedinPartial partialContext}}
+
+    {{else}}
+    {{> notLoggedinPartial partialContext}}
+
+    {{/if}}
+
+
+    {{{body}}}
+
+    
+</body>
+
+</html>

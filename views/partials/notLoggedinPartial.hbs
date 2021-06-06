@@ -1,0 +1,103 @@
+<nav>
+    <button class="menu-nav-button" id='home-ref' data-path='/'>Home</button>
+    <button class="menu-nav-button" id='create-ref' data-path='/create-meetme'>Create a MeetMe</button>
+    {{!-- <button class="menu-nav-button" onclick="location.href='/mymeetings';">My meetings</button> --}}
+    <div class="right">
+      <button class="menu-nav-button" id="signinbtn">Sign In</button>
+      <button class="menu-nav-button" id="signuplink">Sign Up</button>
+    </div>
+</nav>
+    <div id="signinmodal" class="modal-sign">
+  
+      <form class="signin modal-sign-content" method="POST" action="/login">
+        <span class="close-sign">&times;</span>
+        <fieldset>
+            <i class="fas fa-sign-in-alt fa-4x" id="sign-in-icon"></i>
+            <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign in</h1> 
+            <hr>
+  
+            <div class='inputWithIcon'>
+                <label for="email-signin"><strong>Email</strong> <br></label>
+                <input type="email" name="UserEmail" id="email-signin" placeholder="Enter Email" required>
+                <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+                <br> 
+            </div>
+  
+            <div class='inputWithIconPas'>
+                <label for="password-signin"><strong>Password</strong> <br></label>
+                <input type="password" name="UserPass" id="password-signin" placeholder="Enter Password" required>
+                <i class="fa fa-eye fa-lg fa-fw" id="togglePasswordSignIn"></i>
+                <br> 
+            </div>
+    
+          
+  
+  
+          <a href="" id='forgot-pass'><u>Forgot Password ?</u></a>
+          <br>
+  
+          <button>Sign In</button>
+        </fieldset>
+      </form>
+</div>
+  
+<div id="signupmodal" class="modal-sign">
+      
+      <form  name="signupform" class="signup modal-sign-content modal-sign-content-up" method="POST" onsubmit="return validateForm()" action="/signup">
+        <span class="close-sign">&times;</span>
+        <fieldset>
+            <i class="fas fa-user-plus fa-4x" id="user-plus-icon"></i>
+            <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign up</h1>
+            
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please fill this form to create an account</p>
+            <hr>
+  
+            <div class='inputWithIcon'>
+                <label for="full-name-signup"><strong>Full Name</strong> <br></label>
+                <input type="text" name="UserName" id="full-name-signup" placeholder="Enter Full Name" required>
+                <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+            </div>
+            
+            <div class='inputWithIcon'>
+                <label for="email-signup"><strong>Email</strong> <br></label>
+                <input type="email" name="UserEmail" id="email-signup" placeholder="Enter Email" required>
+                <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+            </div>
+  
+            <div class='inputWithIconPas'>
+                <label for="password-signup"><strong>Password</strong> <br></label>
+                <input type="password" name="UserPass" id="password-signup" placeholder="Enter Password" required>
+                <i class="fa fa-eye fa-lg fa-fw" id="togglePassword"></i>
+            </div>
+  
+            <div class='inputWithIconPas'>
+                <label for="password2-signup"><strong>Retype Password</strong> <br></label>
+                <input type="password" name="UserPass2" id="password2-signup" placeholder="Enter Password" required>
+                <i class="fa fa-eye fa-lg fa-fw" id="togglePassword2"></i>
+            </div>
+            
+            <button>Sign Up</button>
+        </fieldset>
+    </form>
+</div>
+
+<script src="/js/modal.js"></script>
+<script src='/js/signinpsw.js'></script>
+<script src='/js/signuppsw.js'></script>
+<script>
+    document.querySelector('#home-ref').addEventListener('mousedown', logMouseButton);
+    document.querySelector('#create-ref').addEventListener('mousedown', logMouseButton);
+
+    function logMouseButton(e) {   
+        if (typeof e === 'object') {
+            switch (e.button) {
+            case 0:
+                location.href=e.target.dataset.path;
+                break;
+            case 1:
+                window.open(e.target.dataset.path,'_blank');
+                break;
+            }
+        }
+    }
+</script>

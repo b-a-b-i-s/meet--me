@@ -1,0 +1,42 @@
+﻿
+<div class="wrappermeetings">
+    <h2 class="subt">Your created and voted meetings are:</h2>
+    {{#each meeting}}
+        <div class="specmeet">
+            <div class="meetinfo">
+                <h3 class="meettitle"><a href="/meeting/{{this.meetingUrl}}">{{this.meetingTitle}}</a></h3>
+                <div class="infogrid">
+                    <div class="infocat">
+                        Participants:
+                    </div>
+                    <div class="infoans">
+                        {{this.numberOfParticipants}}
+                    </div>
+                    {{#if this.closed}}
+                        <div class="infocat">
+                            Chosen Date:
+                        </div>
+                        <div class="infoans">
+                            {{this.finalDate}}
+                        </div>
+                    {{/if}}
+                    <div class="infocat">
+                        Creator:
+                    </div>
+                    <div class="infoans">
+                        {{this.name}}
+                    </div>
+                </div>
+            </div>
+            {{#if this.closed}}
+            <div class="status closed">
+                <h3 class="meettitle">Closed</h3>
+            </div>
+            {{else}}
+            <div class="status active">
+                <h3 class="meettitle">Active</h3>
+            </div>
+            {{/if}}
+        </div>
+    {{/each}}
+</div>
