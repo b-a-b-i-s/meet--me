@@ -21,7 +21,7 @@ app.use(express.json());
 
 app.use(session({
   name: 'meetme-session',
-  secret: process.env.SESSION_SECRET, // κλειδί για κρυπτογράφηση του cookie
+  secret: process.env.SESSION_SECRET || 'enterasecrethere', // κλειδί για κρυπτογράφηση του cookie
   resave: false,
   saveUninitialized: false,
   cookie: {
