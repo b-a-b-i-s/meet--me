@@ -1,11 +1,11 @@
 var btnup = document.getElementById("upbtn");
 
 
-
-btnup.onclick = function () {
-    document.getElementById("signupmodal").style.display = "block";
+if (btnup) {
+    btnup.onclick = function () {
+        document.getElementById("signupmodal").style.display = "block";
+    }
 }
-
 
 
 

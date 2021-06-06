@@ -882,7 +882,7 @@ const highlighted_days = [];
 
 var modalday = document.getElementById("daymodal");
 var linkday = document.getElementById("signuplink");
-var spanday = document.getElementsByClassName("close-sign")[2];
+var spanday = document.getElementsByClassName("close-sign");
 
 function prevmonth(givendate) {
     const givenmonth = givendate.getMonth();
@@ -1465,7 +1465,7 @@ monthSelector.addEventListener('click', (e) => {
 
 const publishBtn = document.querySelector('.submit-options-btn')
 const modalPublish = document.querySelector("#publish-modal")
-const spanpub = document.getElementsByClassName("close-sign")[3];
+const spanpub = document.getElementsByClassName("close-sign")[1];
 
 spanpub.onclick = function () {
     modalPublish.style.display = "none";

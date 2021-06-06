@@ -90,5 +90,28 @@
 <script src="js/modal.js"></script>
 <script src='js/signinpsw.js'></script>
 <script src='js/signuppsw.js'></script> }}
+
+{{#if failedloggin}}
+    <script>
+      alert("Wrond Credentials")
+        const findmodalin = document.getElementById("signinmodal");
+        findmodalin.style.display = "block";
+    </script>
+{{/if}}  
+{{#if needtolog}}
+    <script>
+      alert("You need to log in first!")
+        const findmodalin = document.getElementById("signinmodal");
+        findmodalin.style.display = "block";
+    </script>
+{{/if}} 
+{{#if aftersignup}}
+    <script>
+        alert("You can now sign in!")
+        const findmodalin = document.getElementById("signinmodal");
+        findmodalin.style.display = "block";
+    </script>
+{{/if}}
+
 <script src="/js/index.js"></script>
 <!-- <script src="js/navbar.js"></script> -->
