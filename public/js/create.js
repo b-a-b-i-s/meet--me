@@ -1580,7 +1580,8 @@ finalPublishBtn.onclick = () => {
         
     }
     else if (lista.length == 0){
-        alert("No options selected")
+        document.querySelector('#alert-modal').style.display = 'block'
+        document.querySelector('#alert-message').textContent = 'No options selected'
     }
 
    

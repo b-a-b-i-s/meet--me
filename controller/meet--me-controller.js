@@ -3,10 +3,6 @@
 const model = require('../model/meet--me-model-heroku-pg-db.js');
 const bcrypt = require('bcrypt')
 
-require('dotenv').config();
-const port = process.env.PORT || '3000';
-const host = "localhost:"+port
-// const host = 'meet--me.herokuapp.com'
 
 exports.addMeeting = (req, res) => {
     model.addMeeting(req.body, req.session.loggedUserId, (err, url) => {
@@ -18,15 +14,16 @@ exports.addMeeting = (req, res) => {
     });
 }
 
-exports.publish = (req, res) => {
+exports.publish = (req, res) => {    
     res.render('publish', { 
-        url:host+'/meeting/'+req.params.url,
+        url:req.headers.host+'/meeting/'+req.params.url,
         shorturl:'/meeting/'+req.params.url,
         loggedin:true,
         partialContext: {name: req.session.loggedUserName}
         // name:req.session.userName
     })
 }
+    
 
 
 exports.renderVote = (req, res) => {
