@@ -26,7 +26,7 @@ window.addEventListener("load", () => {
         }
     }
 
-    window.onclick = function (event) {
+    window.addEventListener('click', () => {
         // console.log(event)
         if (event.target == modalalertIndex) {
             modalalertIndex.style.display = "none";
@@ -36,6 +36,6 @@ window.addEventListener("load", () => {
             modalalert.style.display = "none";
             return;
         }
-    }
+    })
 })
 
