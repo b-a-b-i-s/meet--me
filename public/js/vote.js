@@ -42,7 +42,7 @@ function executeAll() {
         document.querySelector('#name').value = thisUserName;
         
     }
-    document.querySelector('#new-name').value = thisUserName;
+    if (document.querySelector('#new-name')) document.querySelector('#new-name').value = thisUserName;
     
     // let dates = [];
 
