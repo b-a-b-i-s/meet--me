@@ -1,0 +1,86 @@
+
+
+.alert-content * {
+    color: #EB6E34;
+}
+
+.alert-content{
+    margin-top: 10em;
+    width: 50%;
+}
+
+.alert-content>fieldset {
+    border: 0;
+    /* margin: 1em auto;
+    background-color: white;
+    border-radius: 14px;
+    width: 60%;
+    text-align: center;
+    box-shadow: 20px 20px rgb(150, 66, 27); */
+}
+
+.alert-content>fieldset>h3 {
+    margin-top: 0;
+}
+
+
+.alert-content button{
+    display:block;
+    width: calc(10% + 7em);
+    height: 2em;
+    font-size: 30px;
+    text-align: center;
+    background-color: white;
+    color: #eb6e34;
+    border-radius: 20px;
+    margin: 1em auto 0 auto;
+    cursor: pointer;
+    border: 3px solid #eb6e34;
+    transition: all 0.1s ease;
+    padding: 3px;
+    outline-color: #c2480f;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    font-family: tahoma;
+}
+
+
+.alert-content button:hover{
+    background-color: #eb6e34;
+    color: white;
+    border: 3px solid #eb6e34;
+    box-shadow: 0px 7px 15px rgb(150, 66, 27);
+    transform: translateY(-4px);
+    outline: none;
+}
+
+.alert-content button:active {
+    background-color: #c2480f;
+    border-color: #c2480f;
+    transform: scale(0.99);
+    outline: none;
+}
+
+
+/* .alert-content hr {
+    height: 2px;
+    border-width: 0;
+    color: gray;
+    background-color: #eb6e34;
+    margin-bottom: 3em;
+} */
+
+
+.close-sign-alert:hover, .close-sign-alert:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.close-sign-alert {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    top: -10px;
+    position: relative;
+}

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/mymeetings.css">
     <link rel="stylesheet" href="/css/publish.css">
     <link rel="stylesheet" href="/css/vote.css">
+    <link rel="stylesheet" href="/css/alert.css">
 
     <link rel="stylesheet" href="/css/create.css">
 
@@ -26,6 +27,18 @@
 
 <body>
 
+    <div id="alert-modal" class="modal-sign" style="display: none;">
+        <div class="alert-content modal-sign-content">
+             <span class="close-sign-alert">&times;</span>
+            <fieldset>
+               
+                <h3 id="alert-message">Wrond Credentials</h3>
+            
+                <button id="alert-btn">OK</button>
+            </fieldset>
+        </div>
+    </div>
+
     {{#if loggedin}}
     {{> loggedinPartial partialContext}}
 
@@ -33,6 +46,8 @@
     {{> notLoggedinPartial partialContext}}
 
     {{/if}}
+
+    
 
 
     {{{body}}}
