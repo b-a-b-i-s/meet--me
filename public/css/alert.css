@@ -84,3 +84,7 @@
     top: -10px;
     position: relative;
 }
+
+#alert-modal {
+    z-index: 10000000;
+}
