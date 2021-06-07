@@ -141,6 +141,9 @@ function executeAll() {
 
     if (meetingInfo.state == 'open') {
 
+
+        const submitVotesBtn = document.querySelector('#submit-votes-btn')
+
         document.querySelectorAll('.meetinghours').forEach(item => {
             item.addEventListener('click', event => {
                 if(item.classList.contains('chosen-vote')){
@@ -151,7 +154,8 @@ function executeAll() {
                 else{
                     if( singlevote && (currvote != 0)){
                         document.querySelector('#alert-modal').style.display = 'block'
-                        document.querySelector('#alert-message').textContent = 'You must provide only a single vote'
+                        if (event.target==submitVotesBtn) document.querySelector('#alert-message').textContent = 'You must provide only a single vote'
+                        else document.querySelector('#alert-message').textContent = 'You can select a single option'
                     }
                     else{
                         item.classList.add('chosen-vote')
@@ -165,8 +169,6 @@ function executeAll() {
 
 
         document.querySelector('.button-container').style.display = 'flex';
-
-        const submitVotesBtn = document.querySelector('#submit-votes-btn')
 
         submitVotesBtn.onclick = () => {
 
