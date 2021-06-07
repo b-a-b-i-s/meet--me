@@ -1476,7 +1476,7 @@ publishBtn.onclick = function () {
 }
 
 
-window.onclick = function (event) {
+window.addEventListener('click', () => {
     // console.log(event.target);
     // if (event.target == modalday) {
     //     monthAll.style.gridTemplateColumns = '1fr'
@@ -1496,8 +1496,10 @@ window.onclick = function (event) {
     if (event.target == modalPublish) {
         modalPublish.style.display = "none";
     }
+}) 
+    
 
-}
+
 
 
 
