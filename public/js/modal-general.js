@@ -26,7 +26,7 @@ window.addEventListener("load", () => {
         }
     }
 
-    window.addEventListener('click', () => {
+    window.addEventListener('click', (event) => {
         // console.log(event)
         if (event.target == modalalertIndex) {
             modalalertIndex.style.display = "none";
