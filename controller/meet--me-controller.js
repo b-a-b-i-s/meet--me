@@ -28,7 +28,6 @@ exports.publish = (req, res) => {
     })
 }
 
-
 exports.renderVote = (req, res) => {
     if (!req.session.userId) {
         model.addTempUser(req, (err, user)=> {
@@ -92,8 +91,6 @@ exports.renderVote = (req, res) => {
     
 
 }
-
-
 
 exports.getDates = (req, res) => {
     let userId = req.session.userId;
