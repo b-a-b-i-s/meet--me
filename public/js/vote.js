@@ -150,7 +150,8 @@ function executeAll() {
                 }
                 else{
                     if( singlevote && (currvote != 0)){
-                        alert("You must provide only a single vote!")
+                        document.querySelector('#alert-modal').style.display = 'block'
+                        document.querySelector('#alert-message').textContent = 'You must provide only a single vote'
                     }
                     else{
                         item.classList.add('chosen-vote')
