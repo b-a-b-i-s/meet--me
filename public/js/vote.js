@@ -38,7 +38,10 @@ function executeAll() {
     document.querySelector('h3').innerHTML= meetingInfo.description
     document.querySelector('h4').innerHTML= `Created by: <b>${meetingInfo.creatorName}</b> at ${meetingInfo.createdTime}`;
     document.querySelector('.top-vote').style.display = 'block';
-    if (document.querySelector('#name')) document.querySelector('#name').value = thisUserName;
+    if (document.querySelector('#name')) {
+        document.querySelector('#name').value = thisUserName;
+        document.querySelector('#new-name').value = thisUserName;
+    }
     
     // let dates = [];
 
