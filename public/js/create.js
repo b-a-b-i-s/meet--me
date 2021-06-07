@@ -1476,7 +1476,7 @@ publishBtn.onclick = function () {
 }
 
 
-window.addEventListener('click', () => {
+window.addEventListener('click', (event) => {
     // console.log(event.target);
     // if (event.target == modalday) {
     //     monthAll.style.gridTemplateColumns = '1fr'
@@ -1486,12 +1486,6 @@ window.addEventListener('click', () => {
     //         deleteDate(currdate, clickeddate.innerHTML);
     //     }
     // }
-    if (event.target == modalin) {
-        modalin.style.display = "none";
-    }
-    if (event.target == modalup) {
-        modalup.style.display = "none";
-    }
 
     if (event.target == modalPublish) {
         modalPublish.style.display = "none";

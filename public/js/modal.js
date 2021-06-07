@@ -47,7 +47,7 @@ window.addEventListener("load", () => {
     spanup.onclick = function () {
         modalup.style.display = "none";
     }
-    window.onclick = function (event) {
+    window.addEventListener('click', (event) => {
         // console.log(event)
         if (event.target == modalalertIndex) {
             modalalertIndex.style.display = "none";
@@ -63,6 +63,6 @@ window.addEventListener("load", () => {
         if (event.target == modalup) {
             modalup.style.display = "none";
         }
-    }
+    })
 })
 
