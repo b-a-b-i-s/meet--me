@@ -40,8 +40,9 @@ function executeAll() {
     document.querySelector('.top-vote').style.display = 'block';
     if (document.querySelector('#name')) {
         document.querySelector('#name').value = thisUserName;
-        document.querySelector('#new-name').value = thisUserName;
+        
     }
+    document.querySelector('#new-name').value = thisUserName;
     
     // let dates = [];
 
