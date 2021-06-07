@@ -14,6 +14,7 @@ function makeid(length) {
    return result.join('');
 }
 
+
 function getMeetingIdFromUrl(url, callback) {
 
 	const query = {
@@ -31,6 +32,7 @@ function getMeetingIdFromUrl(url, callback) {
 		}
 	})
 }
+
 
 function getNamesById(userIds, callback) {
 
@@ -112,6 +114,7 @@ function getNamesById(userIds, callback) {
 	}
 
 }
+
 
 exports.addMeeting = function (newData, loggedUserId, callback) {
  	// console.log('addong to db', newData)
@@ -374,6 +377,7 @@ exports.getDates = function (req, callback) {
 
 }
 
+
 exports.addVotes = function (req, callback) {
 	const url = req.params.url;
 	const votes = req.body;
@@ -489,7 +493,6 @@ exports.addVotes = function (req, callback) {
 }
 
 
-
 exports.checkIfClosedAndIfUserIsCreator = function(req, callback) {
 	const url = req.params.url;
 	const loggedUserId = req.session.loggedUserId;
@@ -537,16 +540,6 @@ exports.chooseFinalOption = function(req, callback) {
 		}
 	})
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -704,9 +697,6 @@ exports.addTempUser = function(req, callback) {
 		})
 	}
 }
-
-
-
 
 
 // function getUserId(signeduserid, callback) {
