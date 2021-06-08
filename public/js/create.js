@@ -882,7 +882,7 @@ const highlighted_days = [];
 
 var modalday = document.getElementById("daymodal");
 var linkday = document.getElementById("signuplink");
-var spanday = document.getElementsByClassName("close-sign");
+var spanday = document.querySelector(".close-sign-month");
 
 function prevmonth(givendate) {
     const givenmonth = givendate.getMonth();
