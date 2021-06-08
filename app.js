@@ -19,11 +19,13 @@ app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.set('trust proxy', 1);
 app.use(session({
   name: 'meetme-session',
   secret: process.env.SESSION_SECRET || 'enterasecrethere', // κλειδί για κρυπτογράφηση του cookie
   resave: false,
   saveUninitialized: false,
+  proxy:true,
   cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: true,
@@ -31,7 +33,7 @@ app.use(session({
   },
   store: new MemoryStore({ checkPeriod: 86400000 })
 }));
-app.set('trust proxy', 1);
+
 
 app.use((req, res, next) => {
   res.locals.userId = req.session.loggedUserId;
