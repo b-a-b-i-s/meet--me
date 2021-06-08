@@ -34,6 +34,7 @@ app.use(session({
   },
   store: new MemoryStore({ checkPeriod: 86400000 })
 }));
+  console.log("🚀 ~ file: app.js ~ line 39 ~ app.get('env')", app.get('env'))
 
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
