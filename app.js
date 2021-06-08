@@ -31,6 +31,7 @@ app.use(session({
   },
   store: new MemoryStore({ checkPeriod: 86400000 })
 }));
+app.set('trust proxy', 1);
 
 app.use((req, res, next) => {
   res.locals.userId = req.session.loggedUserId;
