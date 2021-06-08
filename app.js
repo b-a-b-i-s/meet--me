@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // app.set('trust proxy', 1);
-app.use(session({
+sess = {
   name: 'meetme-session',
   secret: process.env.SESSION_SECRET || 'enterasecrethere', // κλειδί για κρυπτογράφηση του cookie
   resave: false,
@@ -33,13 +33,14 @@ app.use(session({
       // secure: true // NODE_ENV === 'production'
   },
   store: new MemoryStore({ checkPeriod: 86400000 })
-}));
-  console.log("🚀 ~ file: app.js ~ line 39 ~ app.get('env')", app.get('env'))
+};
 
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
   sess.cookie.secure = true // serve secure cookies
 }
+
+app.use(session(sess));
 
 
 app.use((req, res, next) => {
