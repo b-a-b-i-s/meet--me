@@ -26,6 +26,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
       maxAge: 24 * 60 * 60 * 1000,
+      sameSite: true,
+      secure: true // NODE_ENV === 'production'
   },
   store: new MemoryStore({ checkPeriod: 86400000 })
 }));
