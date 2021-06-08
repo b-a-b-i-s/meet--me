@@ -21,7 +21,7 @@ sess = {
   resave: false,
   saveUninitialized: false,
   proxy:true,
-  secureProxy: true,
+  // secureProxy: true,
   cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: true,
