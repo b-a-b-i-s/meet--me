@@ -19,20 +19,26 @@ app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.set('trust proxy', 1);
+// app.set('trust proxy', 1);
 app.use(session({
   name: 'meetme-session',
   secret: process.env.SESSION_SECRET || 'enterasecrethere', // κλειδί για κρυπτογράφηση του cookie
   resave: false,
   saveUninitialized: false,
-  proxy:true,
+  // proxy:true,
+  // secureProxy: true,
   cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: true,
-      secure: true // NODE_ENV === 'production'
+      // secure: true // NODE_ENV === 'production'
   },
   store: new MemoryStore({ checkPeriod: 86400000 })
 }));
+
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
 
 
 app.use((req, res, next) => {
