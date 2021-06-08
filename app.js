@@ -6,20 +6,15 @@ const createError = require('http-errors');
 const session = require('express-session');
 
 const app = express()
-
 const MemoryStore = require('memorystore')(session)
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(logger('dev'));
+
 app.engine('hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-
-// app.set('trust proxy', 1);
 sess = {
   name: 'meetme-session',
   secret: process.env.SESSION_SECRET || 'enterasecrethere', // κλειδί για κρυπτογράφηση του cookie
@@ -42,11 +37,13 @@ if (app.get('env') === 'production') {
 
 app.use(session(sess));
 
+// app.use((req, res, next) => {
+//   res.locals.userId = req.session.loggedUserId;
+//   next();
+// })
 
-app.use((req, res, next) => {
-  res.locals.userId = req.session.loggedUserId;
-  next();
-})
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 //Διαδρομές - Routse
 const routes = require('./routes/meet--me-routes');
