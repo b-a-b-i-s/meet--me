@@ -20,8 +20,8 @@ sess = {
   secret: process.env.SESSION_SECRET || 'enterasecrethere', // κλειδί για κρυπτογράφηση του cookie
   resave: false,
   saveUninitialized: false,
-  // proxy:true,
-  // secureProxy: true,
+  proxy:true,
+  secureProxy: true,
   cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: true,
