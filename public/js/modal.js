@@ -33,20 +33,26 @@ window.addEventListener("load", () => {
         }
     }
 
-    btnin.onclick = function () {
-        modalin.style.display = "block";
-    }
+    if (btnin)
+        btnin.onclick = function () {
+            modalin.style.display = "block";
+        }
+    
+    if (spanin)
     spanin.onclick = function () {
         modalin.style.display = "none";
     }
 
+    if (modalup)
     linkup.onclick = function () {
         modalup.style.display = "block";
     }
 
+    if (spanup)
     spanup.onclick = function () {
         modalup.style.display = "none";
     }
+    
     window.addEventListener('click', (event) => {
         // console.log(event)
         if (event.target == modalalertIndex) {
