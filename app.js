@@ -8,6 +8,9 @@ const session = require('express-session');
 const app = express()
 const MemoryStore = require('memorystore')(session)
 
+const helmet = require('helmet')
+app.use(helmet())
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(logger('dev'));
