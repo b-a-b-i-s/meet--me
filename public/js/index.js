@@ -23,3 +23,22 @@ function handleDeviceChange(e) {
 
 mediaQuery.addEventListener('change', handleDeviceChange)
 handleDeviceChange(mediaQuery)
+
+
+document.querySelector('#copy-btn').onmouseout = outFunc();
+
+if (document.querySelector('#create-bottom-page'))
+    document.querySelector('#create-bottom-page').addEventListener('mousedown', logMouseButton);
+
+function logMouseButton(e) {   
+    if (typeof e === 'object') {
+        switch (e.button) {
+        case 0:
+            location.href=e.target.dataset.path;
+            break;
+        case 1:
+            window.open(e.target.dataset.path,'_blank');
+            break;
+        }
+    }
+}
