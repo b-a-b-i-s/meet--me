@@ -3,13 +3,15 @@
 const sql = require('./db.heroku-pg.js');
 const bcrypt = require('bcrypt')
 
+const crypto = require("crypto");
 
 function makeid(length) {
     var result           = [];
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
     for ( var i = 0; i < length; i++ ) {
-    	result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    	result.push(characters.charAt(crypto.randomInt(0, charactersLength)));
+
    	}  
    return result.join('');
 }
