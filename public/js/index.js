@@ -25,8 +25,6 @@ mediaQuery.addEventListener('change', handleDeviceChange)
 handleDeviceChange(mediaQuery)
 
 
-document.querySelector('#copy-btn').onmouseout = outFunc();
-
 if (document.querySelector('#create-bottom-page'))
     document.querySelector('#create-bottom-page').addEventListener('mousedown', logMouseButton);
 
