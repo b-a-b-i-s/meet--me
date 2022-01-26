@@ -92,7 +92,7 @@
 <script src='js/signuppsw.js'></script> }}
 
 {{#if failedloggin}}
-      <div id="alert-modal-index" class="modal-sign" style="display: none;">
+      <div id="alert-modal-index" class="modal-sign" style="display: block;">
         <div class="alert-content modal-sign-content">
              <span id="close-sign-alert-index" class="close-sign-alert">&times;</span>
             <fieldset>
@@ -103,15 +103,11 @@
             </fieldset>
         </div>
     </div>
-    <script>
-      {{!-- alert("Wrond Credentials") --}}
-        const findmodalin = document.getElementById("signinmodal");
-        findmodalin.style.display = "block";
-        document.querySelector('#alert-modal-index').style.display = 'block'
-    </script>
+    <script src="/js/modal-alert.js"></script>
+
 {{/if}}  
 {{#if needtolog}}
-    <div id="alert-modal-index" class="modal-sign" style="display: none;">
+    <div id="alert-modal-index" class="modal-sign" style="display: block;">
         <div class="alert-content modal-sign-content">
              <span id="close-sign-alert-index" class="close-sign-alert">&times;</span>
             <fieldset>
@@ -122,15 +118,11 @@
             </fieldset>
         </div>
     </div>
-    <script>
-      {{!-- alert("You need to log in first!") --}}
-        const findmodalin = document.getElementById("signinmodal");
-        findmodalin.style.display = "block";
-        document.querySelector('#alert-modal-index').style.display = 'block'
-    </script>
+    <script src="/js/modal-alert.js"></script>
+
 {{/if}} 
 {{#if aftersignup}}
-      <div id="alert-modal-index" class="modal-sign" style="display: none;">
+      <div id="alert-modal-index" class="modal-sign" style="display: block;">
         <div class="alert-content modal-sign-content">
              <span id="close-sign-alert-index" class="close-sign-alert">&times;</span>
             <fieldset>
@@ -141,12 +133,8 @@
             </fieldset>
         </div>
     </div>  
-    <script>
-        {{!-- alert("You can now sign in!") --}}
-        const findmodalin = document.getElementById("signinmodal");
-        findmodalin.style.display = "block";
-        document.querySelector('#alert-modal-index').style.display = 'block'
-    </script>
+    <script src="/js/modal-alert.js"></script>
+
 {{/if}}
 
 <script src="/js/index.js"></script>
