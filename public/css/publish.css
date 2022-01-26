@@ -56,6 +56,21 @@ body, html {
     cursor: pointer;
 }
 
+
+.close-sign-publish {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-sign-publish:hover,
+.close-sign-publish:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .link-container {
     display: flex;
     border: 1px solid #eb6e34;
