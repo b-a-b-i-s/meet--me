@@ -32,3 +32,6 @@ function outFunc() {
   var tooltip = document.getElementById("myTooltip");
   tooltip.innerHTML = "Copy to clipboard";
 }
+
+document.querySelector('#copy-btn').onclick = myFunction();
+document.querySelector('#copy-btn').onmouseout = outFunc();
