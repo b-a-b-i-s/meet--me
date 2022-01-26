@@ -35,3 +35,19 @@ function outFunc() {
 
 document.querySelector('#copy-btn').onclick = myFunction();
 document.querySelector('#copy-btn').onmouseout = outFunc();
+
+
+document.querySelector('#close-go-to-mymeetings').addEventListener('mousedown', logMouseButton);
+
+function logMouseButton(e) {   
+    if (typeof e === 'object') {
+        switch (e.button) {
+        case 0:
+            location.href=e.target.dataset.path;
+            break;
+        case 1:
+            window.open(e.target.dataset.path,'_blank');
+            break;
+        }
+    }
+}
