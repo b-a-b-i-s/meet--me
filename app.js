@@ -4,11 +4,13 @@ const path = require('path');
 const logger = require('morgan');
 const createError = require('http-errors');
 const session = require('express-session');
+const compression = require('compression');
+const helmet = require('helmet');
 
 const app = express()
 const MemoryStore = require('memorystore')(session)
 
-const helmet = require('helmet')
+
 app.use(helmet())
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -50,6 +52,7 @@ app.use(express.json());
 
 //Διαδρομές - Routse
 const routes = require('./routes/meet--me-routes');
+app.use(compression()); //Compress all routes
 app.use('/', routes);
 
 
