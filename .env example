@@ -1,3 +1,0 @@
-PORT = 3000
-DATABASE_URL = "postgres://{user}:{password}@{hostname}:{port}/{database-name}"
-SESSION_SECRET = "secret"
