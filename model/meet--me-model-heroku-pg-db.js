@@ -1,6 +1,6 @@
 'use strict';
 
-const sql = require('./db.heroku-pg.js');
+const sql = require('./db.docker-pg.js');
 const bcrypt = require('bcrypt')
 
 const crypto = require("crypto");

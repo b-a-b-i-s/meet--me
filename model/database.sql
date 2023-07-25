@@ -1,19 +1,7 @@
 -- This script only contains the table creation statements and does not fully represent the table in database. It's still missing: indices, triggers. Do not use it as backup.
 
--- Table Definition
-CREATE TABLE "public"."Date" (
-    "MeetingId" int4 NOT NULL,
-    "DateId" int4 NOT NULL,
-    "StartDate" timestamp NOT NULL,
-    "EndDate" timestamp NOT NULL,
-    CONSTRAINT "Date_fk0" FOREIGN KEY ("MeetingId") REFERENCES "public"."Meeting"("MeetingId"),
-    PRIMARY KEY ("MeetingId","DateId")
-);
-
--- This script only contains the table creation statements and does not fully represent the table in database. It's still missing: indices, triggers. Do not use it as backup.
-
 -- Squences
-CREATE SEQUENCE IF NOT EXISTS "Meeting_MeetingId_seq"
+CREATE SEQUENCE IF NOT EXISTS "Meeting_MeetingId_seq";
 
 -- Table Definition
 CREATE TABLE "public"."Meeting" (
@@ -28,10 +16,23 @@ CREATE TABLE "public"."Meeting" (
     PRIMARY KEY ("MeetingId")
 );
 
+-- Table Definition
+CREATE TABLE "public"."Date" (
+    "MeetingId" int4 NOT NULL,
+    "DateId" int4 NOT NULL,
+    "StartDate" timestamp NOT NULL,
+    "EndDate" timestamp NOT NULL,
+    CONSTRAINT "Date_fk0" FOREIGN KEY ("MeetingId") REFERENCES "public"."Meeting"("MeetingId"),
+    PRIMARY KEY ("MeetingId","DateId")
+);
+
+-- This script only contains the table creation statements and does not fully represent the table in database. It's still missing: indices, triggers. Do not use it as backup.
+
+
 -- This script only contains the table creation statements and does not fully represent the table in database. It's still missing: indices, triggers. Do not use it as backup.
 
 -- Squences
-CREATE SEQUENCE IF NOT EXISTS "Signed User_SignedUserId_seq"
+CREATE SEQUENCE IF NOT EXISTS "Signed User_SignedUserId_seq";
 
 -- Table Definition
 CREATE TABLE "public"."Signed User" (
@@ -45,18 +46,19 @@ CREATE TABLE "public"."Signed User" (
 -- This script only contains the table creation statements and does not fully represent the table in database. It's still missing: indices, triggers. Do not use it as backup.
 
 -- Squences
-CREATE SEQUENCE IF NOT EXISTS "Temporary User_TempId_seq"
+CREATE SEQUENCE IF NOT EXISTS "Temporary User_TempId_seq";
 
 -- Table Definition
 CREATE TABLE "public"."Temporary User" (
     "TempId" int4 NOT NULL DEFAULT nextval('"Temporary User_TempId_seq"'::regclass),
-    "TempName" varchar NOT NULL
+    "TempName" varchar NOT NULL,
+    PRIMARY KEY ("TempId")
 );
 
 -- This script only contains the table creation statements and does not fully represent the table in database. It's still missing: indices, triggers. Do not use it as backup.
 
 -- Squences
-CREATE SEQUENCE IF NOT EXISTS "User_UserId_seq"
+CREATE SEQUENCE IF NOT EXISTS "User_UserId_seq";
 
 -- Table Definition
 CREATE TABLE "public"."User" (
@@ -71,7 +73,7 @@ CREATE TABLE "public"."User" (
 -- This script only contains the table creation statements and does not fully represent the table in database. It's still missing: indices, triggers. Do not use it as backup.
 
 -- Squences
-CREATE SEQUENCE IF NOT EXISTS "Vote_VoteId_seq"
+CREATE SEQUENCE IF NOT EXISTS "Vote_VoteId_seq";
 
 -- Table Definition
 CREATE TABLE "public"."Vote" (
@@ -85,26 +87,33 @@ CREATE TABLE "public"."Vote" (
 );
 
 
-CREATE OR REPLACE FUNCTION public.addsigneduser()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
+CREATE FUNCTION insert_user_from_signed_user()
+  RETURNS TRIGGER 
+  LANGUAGE PLPGSQL
+AS $$
 BEGIN 
 INSERT INTO "User" ("SignedUserId") VALUES (NEW."SignedUserId");
 RETURN NEW;
 END;
-$function$
+$$;
+
+CREATE TRIGGER signed_user_insert_trigger
+AFTER INSERT ON "Signed User"
+FOR EACH ROW
+EXECUTE FUNCTION insert_user_from_signed_user();
 
 
-CREATE OR REPLACE FUNCTION public.addtempuser()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
+CREATE OR REPLACE FUNCTION insert_user_from_temporary_user()
+  RETURNS TRIGGER 
+  LANGUAGE PLPGSQL
+AS $$
 BEGIN 
 INSERT INTO "User" ("TempId") VALUES (NEW."TempId");
 RETURN NEW;
 END;
-$function$
+$$;
 
-
-
+CREATE TRIGGER temporary_user_insert_trigger
+AFTER INSERT ON "Temporary User"
+FOR EACH ROW
+EXECUTE FUNCTION insert_user_from_temporary_user();

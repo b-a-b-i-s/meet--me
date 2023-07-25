@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  reverse:
+    restart: always
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./public:/www/meet--me.babis-skeparnakos.com
+      - /etc/cloudflare/live/babis-skeparnakos.com/fullchain.pem:/etc/cloudflare/live/babis-skeparnakos.com/fullchain.pem:ro
+      - /etc/cloudflare/live/babis-skeparnakos.com/privkey.pem:/etc/cloudflare/live/babis-skeparnakos.com/privkey.pem:ro
+    extra_hosts:
+      - host.docker.internal:host-gateway
