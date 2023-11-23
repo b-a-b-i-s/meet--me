@@ -1,13 +1,14 @@
 # meet-me (Web Programming Project)
 
-Διαθέσιμο στο heroku [εδώ](https://meet--me.herokuapp.com/)
+~~Διαθέσιμο στο heroku [εδώ](https://meet--me.herokuapp.com/)~~
+
+Διαθέσιμο [εδώ](https://library-network.babis-skeparnakos.com//)
 
 ## Τρέξιμο χρησιμοποιώντας μόνο docker:
 
 To run for production:
 ```
 cp .env.sample .env
-docker compose -f docker-compose-postgres.yml up -d
 docker compose up -d --build
 docker compose -f docker-compose-nginx.yml up -d
 ```
@@ -38,4 +39,4 @@ TODO:
 
 - [ ] Μετάφραση σελίδας και του README στα αγγλικά
 - [ ] Βελτίωση των url στο login σύστημα
-- [ ] Διόρθωση στην έκδοση του ode στο package.json
+- [ ] Διόρθωση στην έκδοση του node στο package.json ?
